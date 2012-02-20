@@ -27,10 +27,10 @@
 	url = git://github.com/kevinw/pyflakes-vim.git
 [submodule "bundle/pep8"]
 	path = bundle/pep8
-	url = https://github.com/vim-scripts/pep8.git
+	url = git://github.com/vim-scripts/pep8.git
 [submodule "bundle/pydoc"]
 	path = bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
+	url = git://github.com/fs111/pydoc.vim.git
 [submodule "bundle/ropevim"]
 	path = bundle/ropevim
-	url = https://github.com/sontek/rope-vim.git
+	url = git://github.com/sontek/rope-vim.git
