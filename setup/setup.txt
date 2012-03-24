@@ -1,0 +1,14 @@
+Having pathogen in .vim/autoload should make any plugin in the "bundle" directory to be automatically installed.
+However, some plugins need to be built before they work.
+
+Command-T
+cd ~/.vim/bundle/command-t/ruby/command-t/
+ruby extconf.rb
+make
+
+---------
+Python
+---------
+Python submodules: pep8 and pyflake
+Pyflake should work automatically if the git submodule is set to be recursive
+for pep8 to work, need to apt-get install pep8
