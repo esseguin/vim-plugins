@@ -20,6 +20,16 @@ nnoremap <C-y> 3<C-y>
 
 set tags=~/metv/tags
 
+" get rid of vi compatibility
+set nocompatible
+
+" backups even after saving and exiting
+set undofile
+
+" fix search so that it ignores case unless there is 1 or more capitals
+set ignorecase
+set smartcase
+
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
  
@@ -34,6 +44,7 @@ filetype indent on
 " Highlight search terms...
 set hlsearch
 set incsearch " ...dynamically as they are typed.)
+set showmatch
 
 " make tabs do what they should
 set tabstop=4
