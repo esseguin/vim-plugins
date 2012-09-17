@@ -145,11 +145,14 @@ vnoremap <F1> <ESC>
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <Space> *N
+
 " -------------------------Plugin config-------------------------
 
-autocmd FileType php,html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
-autocmd FileType php,html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
-autocmd FileType py,ruby set expandtab
+"autocmd FileType php,html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+"autocmd FileType php,html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+autocmd FileType python set expandtab
+autocmd FileType ruby set expandtab
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
