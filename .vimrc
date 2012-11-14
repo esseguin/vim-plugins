@@ -122,6 +122,11 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " new tab
 noremap <leader>g <Esc> <C-w><C-]><C-w>T
 
+noremap <leader>p :s/"/\\"/ge<CR>
+  \ gv:s/\$/\\$/ge<CR>
+  \ gv"aygv:s/\\"/"/ge<CR>
+  \ gv:s/\\\$/\$/ge<CR>
+  \ : ! php -r "<C-r>a"<CR>
 noremap <leader>bgl :set background=light<CR>
 noremap <leader>bgd :set background=dark<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
@@ -173,5 +178,5 @@ nnoremap <leader>a :Ack
 noremap <leader>se <Esc>:Errors<CR>
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb', 'php'], 'passive_filetypes': [] }
 
-set tags=~/metv/tags
+set tags=~/.vim/mytags/sv-tags
 
