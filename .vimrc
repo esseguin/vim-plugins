@@ -1,8 +1,12 @@
+call pathogen#infect()
 " ----------------------------------------------------------
 " ---------------------Miscellaneous------------------------
 " ----------------------------------------------------------
 " change the leader to be , because that's way more convenient than \
 let mapleader = ","
+
+" jj escapes instead of escape
+:imap jj <Esc>
 
 " save on focus lost
 "au FocusLost * :wa
@@ -97,7 +101,7 @@ set showcmd
 
 " solarized
 set background=dark
-"colorscheme solarized
+colorscheme solarized
 
 " Highlight search terms...
 set hlsearch
@@ -134,6 +138,7 @@ nnoremap <leader>ftc Vatzf
 nnoremap <leader>fto Vatzo
 nnoremap <leader>bb <C-^> 
 nnoremap <leader>ss :set syntax=
+nnoremap <leader>r : !sv-sync<CR>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
@@ -156,8 +161,9 @@ nnoremap <Space> *N
 
 "autocmd FileType php,html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 "autocmd FileType php,html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
-autocmd FileType python set expandtab
-autocmd FileType ruby set expandtab
+
+"autocmd FileType python set expandtab
+"autocmd FileType ruby set expandtab
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -173,10 +179,24 @@ noremap <leader>O <Esc>:CommandTFlush<CR>
 noremap <leader>m <Esc>:CommandTBuffer<CR>
 noremap <leader>nt <Esc>:NERDTreeToggle<CR>
 noremap <leader>nf <Esc>:NERDTreeFind<CR>
+let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
 nnoremap <leader>a :Ack
+
+"noremap <leader>ds <Esc>:Dash 
+"noremap <leader>dk <Esc>:DashKeywords 
+"noremap <leader>dl <Esc>:Dash<CR>
+noremap <leader>dg <Esc>:Dash!<CR>
 
 noremap <leader>se <Esc>:Errors<CR>
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb', 'php'], 'passive_filetypes': [] }
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_jshint_exec='/usr/local/bin/jshint'
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
-set tags=~/.vim/mytags/sv-tags
+source ~/.vim/php-doc.vim 
+" cg = comment generate
+noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
+"inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
+
+"set tags=~/.vim/mytags/sv-tags
 

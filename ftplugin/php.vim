@@ -1,0 +1,2 @@
+:DashKeywords php
+setlocal noexpandtab
