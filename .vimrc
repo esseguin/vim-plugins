@@ -1,4 +1,52 @@
-call pathogen#infect()
+"call pathogen#infect()
+" -------------------------Vundle config-------------------------
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~ github plugins ~~~~~~~~~~~~~~~~~~~~~~~
+" Lets you run phpmd / phpcs validation
+Plugin 'joonty/vim-phpqa'
+" git commands
+Plugin 'tpope/vim-fugitive'
+" automatic closing of quotes, parenthesis, brackets, etc.
+Plugin 'Raimondi/delimitMate'
+" automatic closing of html tags
+Plugin 'docunext/closetag.vim'
+" easy commenting
+Plugin 'scrooloose/nerdcommenter'
+" sw33t colorscheme
+Plugin 'altercation/vim-colors-solarized'
+" tab completion
+Plugin 'ervandew/supertab'
+" class outliner
+Plugin 'majutsushi/tagbar'
+" python documentation
+Plugin 'fs111/pydoc.vim'
+" file explorer
+Plugin 'scrooloose/nerdtree'
+" ack search
+Plugin 'mileszs/ack.vim'
+" cross-language syntax checkers
+Plugin 'scrooloose/syntastic'
+" fuzzy code completion
+Plugin 'Valloric/YouCompleteMe'
+" dash wrapper
+Plugin 'rizzatti/dash.vim'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~ from http://vim-scripts.org/vim/scripts.html 
+"Plugin 'L9'
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~ non-github ~~~~~~~~~~~~~~~~~~~~~~~
+" file search 
+Plugin 'git://git.wincent.com/command-t.git'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 " ----------------------------------------------------------
 " ---------------------Miscellaneous------------------------
 " ----------------------------------------------------------
@@ -165,8 +213,8 @@ nnoremap <Space> *N
 "autocmd FileType python set expandtab
 "autocmd FileType ruby set expandtab
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
@@ -192,6 +240,20 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb', 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_jshint_exec='/usr/local/bin/jshint'
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+"function! SyntaxCheckers_php_phpmd_GetLocList() dict
+    "let makeprg = self.makeprgBuild({
+        "\ 'post_args_before': 'text',
+        "\ 'post_args': '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml' })
+
+    "let errorformat = '%E%f:%l%\s%#%m'
+
+    "return SyntasticMake({
+        "\ 'makeprg': makeprg,
+        "\ 'errorformat': errorformat,
+        "\ 'subtype' : 'Style' })
+"endfunction
+
 
 source ~/.vim/php-doc.vim 
 " cg = comment generate
@@ -199,4 +261,5 @@ noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 "inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
 
 "set tags=~/.vim/mytags/sv-tags
+
 
