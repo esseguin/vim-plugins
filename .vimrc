@@ -236,11 +236,12 @@ nnoremap <leader>a :Ack
 noremap <leader>dg <Esc>:Dash!<CR>
 
 noremap <leader>se <Esc>:Errors<CR>
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb', 'php'], 'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb'], 'passive_filetypes': [] }
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_jshint_exec='/usr/local/bin/jshint'
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+"let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+
 "function! SyntaxCheckers_php_phpmd_GetLocList() dict
     "let makeprg = self.makeprgBuild({
         "\ 'post_args_before': 'text',
