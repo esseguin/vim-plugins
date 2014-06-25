@@ -4,37 +4,47 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Bundle 'gmarik/Vundle.vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ github plugins ~~~~~~~~~~~~~~~~~~~~~~~
 " Lets you run phpmd / phpcs validation
-Plugin 'joonty/vim-phpqa'
+Bundle 'joonty/vim-phpqa'
 " git commands
-Plugin 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 " automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
 " automatic closing of html tags
-Plugin 'docunext/closetag.vim'
+"Bundle 'docunext/closetag.vim'
 " easy commenting
-Plugin 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
 " sw33t colorscheme
-Plugin 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 " tab completion
-Plugin 'ervandew/supertab'
+Bundle 'ervandew/supertab'
 " class outliner
-Plugin 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
 " python documentation
-Plugin 'fs111/pydoc.vim'
+Bundle 'fs111/pydoc.vim'
 " file explorer
-Plugin 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 " ack search
-Plugin 'mileszs/ack.vim'
+Bundle 'mileszs/ack.vim'
 " cross-language syntax checkers
-Plugin 'scrooloose/syntastic'
-" fuzzy code completion
-Plugin 'Valloric/YouCompleteMe'
+"Bundle 'scrooloose/syntastic'
 " dash wrapper
-Plugin 'rizzatti/dash.vim'
+Bundle 'rizzatti/dash.vim'
+" PHP omni-completion
+Bundle 'shawncplus/phpcomplete.vim'
+" Auto completion. Replaces YouCompleteMe
+Bundle 'Shougo/neocomplete.vim'
+" fuzzy code completion
+"Bundle 'Valloric/YouCompleteMe'
+" JShint
+Bundle "wookiehangover/jshint.vim"
+
+" Markdown syntax
+Bundle "tpope/vim-markdown"
+Bundle "suan/vim-instant-markdown"
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ from http://vim-scripts.org/vim/scripts.html 
 "Plugin 'L9'
@@ -61,6 +71,9 @@ let mapleader = ","
 
 " store a long history
 set history=1000
+
+" get rid of windows formatting
+set fileformat=unix
 
 "---------- Tab completion stuff ------------------ 
 "imap <leader><tab> <C-x><C-o>  
@@ -186,7 +199,8 @@ nnoremap <leader>ftc Vatzf
 nnoremap <leader>fto Vatzo
 nnoremap <leader>bb <C-^> 
 nnoremap <leader>ss :set syntax=
-nnoremap <leader>r : !sv-sync<CR>
+"nnoremap <leader>r : !sv-repo-sync fb-toolchain-api metv-common fb-toolchain amino-rendr<CR>
+nnoremap <leader>r : !sv-repo-sync %:p<CR>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
@@ -216,6 +230,10 @@ nnoremap <Space> *N
 "call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
 
+"let g:ycm_collect_identifiers_from_tags_files = 1
+
+let g:neocomplete#enable_at_startup = 1
+
 let g:tagbar_usearrows = 1
 nnoremap <leader>l :TagbarToggle<CR>
 
@@ -236,16 +254,19 @@ nnoremap <leader>a :Ack
 noremap <leader>dg <Esc>:Dash!<CR>
 
 noremap <leader>se <Esc>:Errors<CR>
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb'], 'passive_filetypes': [] }
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_jshint_exec='/usr/local/bin/jshint'
+"let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb'], 'passive_filetypes': [] }
+"let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_jshint_exec='/usr/local/bin/jshint'
 let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml"
+let g:phpqa_codesniffer_args = "--error-severity=1"
+"let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
 "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 "let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
 
+let JSHintUpdateWriteOnly=1
 
 source ~/.vim/php-doc.vim 
 " cg = comment generate
 noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 
-"set tags=~/.vim/mytags/sv-tags
+set tags=~/.vim/mytags/fb-toolchain-api-tags

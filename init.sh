@@ -11,4 +11,6 @@ ruby extconf.rb
 make
 cd ../../../..
 
+ln -s bundle/vim-instant-markdown/after after
+
 #git submodule init && git submodule update && git submodule foreach git pull origin master
