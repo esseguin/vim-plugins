@@ -153,7 +153,7 @@ set splitbelow
 set wrap
 set textwidth=100
 set formatoptions=qrn1
-set colorcolumn=80
+set colorcolumn=90
 
 "enable code folding
 set foldenable
@@ -253,7 +253,7 @@ noremap <leader>m <Esc>:CommandTBuffer<CR>
 noremap <leader>nt <Esc>:NERDTreeToggle<CR>
 noremap <leader>nf <Esc>:NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
-nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack 
 
 "noremap <leader>ds <Esc>:Dash 
 "noremap <leader>dk <Esc>:DashKeywords 
