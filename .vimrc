@@ -30,7 +30,7 @@ Bundle 'scrooloose/nerdtree'
 " ack search
 Bundle 'mileszs/ack.vim'
 " cross-language syntax checkers
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 " dash wrapper
 Bundle 'rizzatti/dash.vim'
 " PHP omni-completion
@@ -41,6 +41,13 @@ Bundle 'Shougo/neocomplete.vim'
 "Bundle 'Valloric/YouCompleteMe'
 " JShint
 Bundle "wookiehangover/jshint.vim"
+" JS Syntax
+Bundle "pangloss/vim-javascript"
+" JSX Syntax
+Bundle "mxw/vim-jsx"
+
+" HTML5 Syntax
+Bundle "othree/html5.vim"
 
 " Markdown syntax
 Bundle "tpope/vim-markdown"
@@ -254,13 +261,12 @@ nnoremap <leader>a :Ack
 noremap <leader>dg <Esc>:Dash!<CR>
 
 noremap <leader>se <Esc>:Errors<CR>
-"let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['py', 'rb'], 'passive_filetypes': [] }
-"let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['jsx'], 'passive_filetypes': [] }
+let g:syntastic_javascript_checkers = ['jsxhint']
 "let g:syntastic_jshint_exec='/usr/local/bin/jshint'
 let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml"
 let g:phpqa_codesniffer_args = "--error-severity=1"
 "let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 "let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
 
 let JSHintUpdateWriteOnly=1
