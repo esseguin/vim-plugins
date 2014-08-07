@@ -49,6 +49,9 @@ Bundle "mxw/vim-jsx"
 " HTML5 Syntax
 Bundle "othree/html5.vim"
 
+" Less syntax
+Bundle 'groenewege/vim-less'
+
 " Markdown syntax
 Bundle "tpope/vim-markdown"
 Bundle "suan/vim-instant-markdown"
