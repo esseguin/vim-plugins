@@ -28,7 +28,9 @@ Bundle 'fs111/pydoc.vim'
 " file explorer
 Bundle 'scrooloose/nerdtree'
 " ack search
-Bundle 'mileszs/ack.vim'
+"Bundle 'mileszs/ack.vim'
+" ack alternative
+Bundle 'dyng/ctrlsf.vim'
 " cross-language syntax checkers
 Bundle 'scrooloose/syntastic'
 " dash wrapper
@@ -256,7 +258,8 @@ noremap <leader>m <Esc>:CommandTBuffer<CR>
 noremap <leader>nt <Esc>:NERDTreeToggle<CR>
 noremap <leader>nf <Esc>:NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
-nnoremap <leader>a :Ack 
+"nnoremap <leader>a :Ack 
+nnoremap <leader>a :CtrlSF 
 
 "noremap <leader>ds <Esc>:Dash 
 "noremap <leader>dk <Esc>:DashKeywords 

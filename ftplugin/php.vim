@@ -1,3 +1,3 @@
 :DashKeywords php
 setlocal noexpandtab
-setlocal iskeyword-=-
+"setlocal iskeyword-=-
