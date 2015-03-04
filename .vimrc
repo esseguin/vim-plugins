@@ -64,8 +64,9 @@ Bundle "suan/vim-instant-markdown"
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ non-github ~~~~~~~~~~~~~~~~~~~~~~~
 " file search 
-Plugin 'git://git.wincent.com/command-t.git'
-
+"Plugin 'git://git.wincent.com/command-t.git'
+"Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -199,7 +200,7 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " new tab
 noremap <leader>g <Esc> <C-w><C-]><C-w>T
 
-noremap <leader>p :s/"/\\"/ge<CR>
+noremap <leader>p :s/\"/\\\"/ge<CR>
   \ gv:s/\$/\\$/ge<CR>
   \ gv"aygv:s/\\"/"/ge<CR>
   \ gv:s/\\\$/\$/ge<CR>
@@ -252,14 +253,17 @@ nnoremap <leader>l :TagbarToggle<CR>
 nnoremap <leader>T :TlistOpen<CR>
 nnoremap <leader>t :TlistToggle<CR>
 
-noremap <leader>o <Esc>:CommandT<CR>
-noremap <leader>O <Esc>:CommandTFlush<CR>
+noremap <leader>o <Esc>:CtrlP<CR>
+noremap <leader>O <Esc>:CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|vendor)$'
+
 noremap <leader>m <Esc>:CommandTBuffer<CR>
 noremap <leader>nt <Esc>:NERDTreeToggle<CR>
 noremap <leader>nf <Esc>:NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
 "nnoremap <leader>a :Ack 
 nnoremap <leader>a :CtrlSF 
+let g:ctrlsf_auto_close = 0
 
 "noremap <leader>ds <Esc>:Dash 
 "noremap <leader>dk <Esc>:DashKeywords 
@@ -274,6 +278,8 @@ let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/ph
 let g:phpqa_codesniffer_args = "--error-severity=1"
 "let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
 "let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+
+let g:ctrlp_working_path_mode = 'ra'
 
 let JSHintUpdateWriteOnly=1
 
