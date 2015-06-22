@@ -88,6 +88,12 @@ set history=1000
 " get rid of windows formatting
 set fileformat=unix
 
+" stop error noises and prompts
+set noerrorbells 
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=
+
 "---------- Tab completion stuff ------------------ 
 "imap <leader><tab> <C-x><C-o>  
 set wildmenu
