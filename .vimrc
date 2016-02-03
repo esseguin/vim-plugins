@@ -30,7 +30,10 @@ Bundle 'scrooloose/nerdtree'
 " ack search
 "Bundle 'mileszs/ack.vim'
 " ack alternative
-Bundle 'dyng/ctrlsf.vim'
+"Bundle 'dyng/ctrlsf.vim'
+" ack alternative 2 (faster)
+"Bundle 'rking/ag.vim'
+Bundle 'gabesoft/vim-ags'
 " cross-language syntax checkers
 Bundle 'scrooloose/syntastic'
 " dash wrapper
@@ -58,6 +61,20 @@ Bundle 'groenewege/vim-less'
 Bundle "tpope/vim-markdown"
 Bundle "suan/vim-instant-markdown"
 
+" Vim powerlines UI support
+Bundle 'itchyny/lightline.vim'
+
+" vim-react-snippets:
+Bundle "justinj/vim-react-snippets"
+
+" SnipMate and its dependencies:
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+
+" align things
+Bundle "godlygeek/tabular"
+
 " ~~~~~~~~~~~~~~~~~~~~~~~ from http://vim-scripts.org/vim/scripts.html 
 "Plugin 'L9'
 
@@ -67,6 +84,7 @@ Bundle "suan/vim-instant-markdown"
 "Plugin 'git://git.wincent.com/command-t.git'
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -202,24 +220,6 @@ nnoremap <silent> <F3> :tabn<CR>
 " press F4 to switch between c/cpp files and their headers
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-" open the file that the cursor is over (assuming its in the tag stack) in a
-" new tab
-noremap <leader>g <Esc> <C-w><C-]><C-w>T
-
-noremap <leader>p :s/\"/\\\"/ge<CR>
-  \ gv:s/\$/\\$/ge<CR>
-  \ gv"aygv:s/\\"/"/ge<CR>
-  \ gv:s/\\\$/\$/ge<CR>
-  \ : ! php -r "<C-r>a"<CR>
-noremap <leader>bgl :set background=light<CR>
-noremap <leader>bgd :set background=dark<CR>
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-nnoremap <leader>ftc Vatzf
-nnoremap <leader>fto Vatzo
-nnoremap <leader>bb <C-^> 
-nnoremap <leader>ss :set syntax=
-"nnoremap <leader>r : !sv-repo-sync fb-toolchain-api metv-common fb-toolchain amino-rendr<CR>
-nnoremap <leader>r : !sv-repo-sync %:p<CR>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
@@ -238,8 +238,67 @@ nnoremap k gk
 
 nnoremap <Space> *N
 
-" -------------------------Plugin config-------------------------
 
+" ###################################################################
+" ######################### Leader Commands #########################
+" ###################################################################
+" ------------------------- Custom -------------------------
+noremap  <leader>x <Esc>0i$x = <Esc>oprint_r($x);<Esc>
+noremap  <leader>bgl :set background=light<CR>
+noremap  <leader>bgd :set background=dark<CR>
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>ftc Vatzf
+nnoremap <leader>fto Vatzo
+nnoremap <leader>bb <C-^> 
+nnoremap <leader>ss :set syntax=
+"nnoremap <leader>r : !sv-repo-sync fb-toolchain-api metv-common fb-toolchain amino-rendr<CR>
+nnoremap <leader>r : !sv-repo-sync %:p<CR>
+
+" open the file that the cursor is over (assuming its in the tag stack) in a
+" new tab
+noremap <leader>g <Esc> <C-w><C-]><C-w>T
+
+" run a php command
+noremap <leader>p :s/\"/\\\"/ge<CR>
+  \ gv:s/\$/\\$/ge<CR>
+  \ gv"aygv:s/\\"/"/ge<CR>
+  \ gv:s/\\\$/\$/ge<CR>
+  \ : ! php -r "<C-r>a"<CR>
+
+" ------------------------- Plugin -------------------------
+" Tagbar
+nnoremap <leader>l :TagbarToggle<CR>
+
+" Ctrl-P
+noremap <leader>o <Esc>:CtrlP<CR>
+noremap <leader>O <Esc>:CtrlPMRU<CR>
+
+" Ctrl-P Funky (fuzzy search)
+nnoremap <Leader>f :CtrlPFunky<Cr>
+
+" NERD Tree
+noremap <leader>nt <Esc>:NERDTreeToggle<CR>
+noremap <leader>nf <Esc>:NERDTreeFind<CR>
+
+" Search (ags)
+"nnoremap <leader>a :Ack 
+"nnoremap <leader>a :CtrlSF 
+nnoremap <leader>a :Ags 
+
+" Dash
+"noremap <leader>ds <Esc>:Dash 
+"noremap <leader>dk <Esc>:DashKeywords 
+"noremap <leader>dl <Esc>:Dash<CR>
+noremap <leader>dg <Esc>:Dash!<CR>
+
+noremap <leader>se <Esc>:Errors<CR>
+
+" Comment generation
+noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
+
+" ###################################################################
+" ########################## Plugin Config ##########################
+" ###################################################################
 "autocmd FileType php,html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 "autocmd FileType php,html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 
@@ -251,32 +310,29 @@ nnoremap <Space> *N
 
 "let g:ycm_collect_identifiers_from_tags_files = 1
 
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete
 let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 4 
+
+" solarized lightline/powerline color scheme
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
 let g:tagbar_usearrows = 1
-nnoremap <leader>l :TagbarToggle<CR>
-
-nnoremap <leader>T :TlistOpen<CR>
-nnoremap <leader>t :TlistToggle<CR>
-
-noremap <leader>o <Esc>:CtrlP<CR>
-noremap <leader>O <Esc>:CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|vendor)$'
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_matchtype = 'path'
 
-noremap <leader>m <Esc>:CommandTBuffer<CR>
-noremap <leader>nt <Esc>:NERDTreeToggle<CR>
-noremap <leader>nf <Esc>:NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
-"nnoremap <leader>a :Ack 
-nnoremap <leader>a :CtrlSF 
-let g:ctrlsf_auto_close = 0
+"let g:ctrlsf_auto_close = 0
+let g:ag_working_path_mode="r"
 
-"noremap <leader>ds <Esc>:Dash 
-"noremap <leader>dk <Esc>:DashKeywords 
-"noremap <leader>dl <Esc>:Dash<CR>
-noremap <leader>dg <Esc>:Dash!<CR>
-
-noremap <leader>se <Esc>:Errors<CR>
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['jsx'], 'passive_filetypes': [] }
 let g:syntastic_javascript_checkers = ['jsxhint']
 "let g:syntastic_jshint_exec='/usr/local/bin/jshint'
@@ -290,7 +346,5 @@ let g:ctrlp_working_path_mode = 'ra'
 let JSHintUpdateWriteOnly=1
 
 source ~/.vim/php-doc.vim 
-" cg = comment generate
-noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 
 set tags=~/.vim/mytags/fb-toolchain-api-tags
