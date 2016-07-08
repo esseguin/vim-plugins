@@ -1,98 +1,102 @@
-"call pathogen#infect()
-" -------------------------Vundle config-------------------------
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Bundle 'gmarik/Vundle.vim'
+" -------------------------Vim-plug config-------------------------
+call plug#begin('~/.vim/plugged')
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ github plugins ~~~~~~~~~~~~~~~~~~~~~~~
 " Lets you run phpmd / phpcs validation
-Bundle 'joonty/vim-phpqa'
+Plug 'joonty/vim-phpqa'
 " git commands
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " automatic closing of quotes, parenthesis, brackets, etc.
-"Bundle 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 " automatic closing of html tags
-"Bundle 'docunext/closetag.vim'
+"Plug 'docunext/closetag.vim'
 " easy commenting
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " sw33t colorscheme
-Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " tab completion
-Bundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 " class outliner
-Bundle 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " python documentation
-Bundle 'fs111/pydoc.vim'
+Plug 'fs111/pydoc.vim'
 " file explorer
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " ack search
-"Bundle 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 " ack alternative
-"Bundle 'dyng/ctrlsf.vim'
+"Plug 'dyng/ctrlsf.vim'
 " ack alternative 2 (faster)
-"Bundle 'rking/ag.vim'
-Bundle 'gabesoft/vim-ags'
+"Plug 'rking/ag.vim'
+Plug 'gabesoft/vim-ags'
 " cross-language syntax checkers
-Bundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " dash wrapper
-Bundle 'rizzatti/dash.vim'
+Plug 'rizzatti/dash.vim'
 " PHP omni-completion
-Bundle 'shawncplus/phpcomplete.vim'
+Plug 'shawncplus/phpcomplete.vim'
 " Auto completion. Replaces YouCompleteMe
-Bundle 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+
 " fuzzy code completion
-"Bundle 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 " JShint
-Bundle "wookiehangover/jshint.vim"
+Plug 'wookiehangover/jshint.vim'
 " JS Syntax
-Bundle "pangloss/vim-javascript"
+Plug 'pangloss/vim-javascript'
 " JSX Syntax
-Bundle "mxw/vim-jsx"
+Plug 'mxw/vim-jsx'
 
 " HTML5 Syntax
-Bundle "othree/html5.vim"
+Plug 'othree/html5.vim'
 
 " Less syntax
-Bundle 'groenewege/vim-less'
+Plug 'groenewege/vim-less'
 
 " Markdown syntax
-Bundle "tpope/vim-markdown"
-Bundle "suan/vim-instant-markdown"
+Plug 'tpope/vim-markdown'
+Plug 'suan/vim-instant-markdown'
 
 " Vim powerlines UI support
-Bundle 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 " vim-react-snippets:
-Bundle "justinj/vim-react-snippets"
+Plug 'justinj/vim-react-snippets'
 
 " SnipMate and its dependencies:
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 " align things
-Bundle "godlygeek/tabular"
+Plug 'godlygeek/tabular'
 
-" ~~~~~~~~~~~~~~~~~~~~~~~ from http://vim-scripts.org/vim/scripts.html 
-"Plugin 'L9'
+" motion shortcuts
+Plug 'easymotion/vim-easymotion'
+
+" cleaner text exiting
+Plug 'junegunn/goyo.vim'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ non-github ~~~~~~~~~~~~~~~~~~~~~~~
 " file search 
-"Plugin 'git://git.wincent.com/command-t.git'
-"Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tacahiroy/ctrlp-funky'
+"Plug 'wincent/Command-T'
+Plug 'kien/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 " ----------------------------------------------------------
 " ---------------------Miscellaneous------------------------
 " ----------------------------------------------------------
 " change the leader to be , because that's way more convenient than \
 let mapleader = ","
+
+" semicolon becomes colon
+map ; :
 
 " jj escapes instead of escape
 :imap jj <Esc>
@@ -106,11 +110,25 @@ set history=1000
 " get rid of windows formatting
 set fileformat=unix
 
+"set shell=bash\ -i
+
 " stop error noises and prompts
 set noerrorbells 
 set novisualbell
 set t_vb=
 autocmd! GUIEnter * set vb t_vb=
+
+" " Copy to system clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from system clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 "---------- Tab completion stuff ------------------ 
 "imap <leader><tab> <C-x><C-o>  
@@ -252,7 +270,7 @@ nnoremap <leader>fto Vatzo
 nnoremap <leader>bb <C-^> 
 nnoremap <leader>ss :set syntax=
 "nnoremap <leader>r : !sv-repo-sync fb-toolchain-api metv-common fb-toolchain amino-rendr<CR>
-nnoremap <leader>r : !sv-repo-sync %:p<CR>
+nnoremap <leader>r : !gg-repo-sync %:p<CR>
 
 " open the file that the cursor is over (assuming its in the tag stack) in a
 " new tab
@@ -264,6 +282,9 @@ noremap <leader>p :s/\"/\\\"/ge<CR>
   \ gv"aygv:s/\\"/"/ge<CR>
   \ gv:s/\\\$/\$/ge<CR>
   \ : ! php -r "<C-r>a"<CR>
+
+" Call tabularize with the start regex already inserted
+noremap <leader>t :Tabularize /
 
 " ------------------------- Plugin -------------------------
 " Tagbar
@@ -312,12 +333,12 @@ noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete
-let g:neocomplete#enable_at_startup = 1
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+let g:deoplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 4 
+let g:deoplete#sources#syntax#min_keyword_length = 4 
 
 " solarized lightline/powerline color scheme
 let g:lightline = {
@@ -344,6 +365,25 @@ let g:phpqa_codesniffer_args = "--error-severity=1"
 let g:ctrlp_working_path_mode = 'ra'
 
 let JSHintUpdateWriteOnly=1
+
+" ---- EasyMotion default config ----
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
 
 source ~/.vim/php-doc.vim 
 
