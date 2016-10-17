@@ -5,8 +5,6 @@ function! DoRemote(arg)
 endfunction
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ github plugins ~~~~~~~~~~~~~~~~~~~~~~~
-" Lets you run phpmd / phpcs validation
-Plug 'joonty/vim-phpqa'
 " git commands
 Plug 'tpope/vim-fugitive'
 " automatic closing of quotes, parenthesis, brackets, etc.
@@ -15,8 +13,8 @@ Plug 'tpope/vim-fugitive'
 "Plug 'docunext/closetag.vim'
 " easy commenting
 Plug 'scrooloose/nerdcommenter'
-" sw33t colorscheme
-Plug 'altercation/vim-colors-solarized'
+" colorscheme
+Plug 'arakashic/nvim-colors-solarized'
 " tab completion
 Plug 'ervandew/supertab'
 " class outliner
@@ -36,15 +34,20 @@ Plug 'gabesoft/vim-ags'
 Plug 'scrooloose/syntastic'
 " dash wrapper
 Plug 'rizzatti/dash.vim'
-" PHP omni-completion
-Plug 'shawncplus/phpcomplete.vim'
 " Auto completion. Replaces YouCompleteMe
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Allow mixed space/tab tabs
+"Plug 'vim-scripts/Smart-Tabs'
+
+" PHP
+"Plug 'StanAngeloff/php.vim' " better php syntax
+Plug 'shawncplus/phpcomplete.vim' " PHP omni-completion
+Plug 'joonty/vim-phpqa' " phpmd / phpcs validation
 
 " fuzzy code completion
 "Plug 'Valloric/YouCompleteMe'
 " JShint
-Plug 'wookiehangover/jshint.vim'
+"Plug 'wookiehangover/jshint.vim'
 " JS Syntax
 Plug 'pangloss/vim-javascript'
 " JSX Syntax
@@ -52,6 +55,8 @@ Plug 'mxw/vim-jsx'
 
 " HTML5 Syntax
 Plug 'othree/html5.vim'
+" % matching for html tags
+Plug 'tmhedberg/matchit'
 
 " Less syntax
 Plug 'groenewege/vim-less'
@@ -62,6 +67,7 @@ Plug 'suan/vim-instant-markdown'
 
 " Vim powerlines UI support
 Plug 'itchyny/lightline.vim'
+Plug 'bling/vim-bufferline'
 
 " vim-react-snippets:
 Plug 'justinj/vim-react-snippets'
@@ -72,13 +78,16 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " align things
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 
 " motion shortcuts
 Plug 'easymotion/vim-easymotion'
 
 " cleaner text exiting
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+" buffer visualization
+Plug 'jeetsukumaran/vim-buffergator'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ non-github ~~~~~~~~~~~~~~~~~~~~~~~
@@ -176,7 +185,6 @@ filetype plugin on
 filetype indent on
 
 set ic
-set cindent
 set number
 "relative numbering. 
 set relativenumber
@@ -191,7 +199,7 @@ nnoremap ' `
 nnoremap ` '
 
 " when using 'set list' to see whitespace, this makes the whitespace look better
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
 
 " new split goes below current window instead of above
 set splitbelow
@@ -206,16 +214,13 @@ set colorcolumn=90
 "enable code folding
 set foldenable
 
-"I don't know what this does, but it seems useful?
-set smartindent
-set autoindent
-
 "show cursor position in bottom right
 set ruler
 "show the command you're typing in the bottom right, too
 set showcmd
 
 " solarized
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 colorscheme solarized
 
@@ -225,8 +230,9 @@ set incsearch " ...dynamically as they are typed.)
 set showmatch
 
 " make tabs do what they should
-set tabstop=4
-set shiftwidth=4
+set noet ci pi sts=0 sw=4 ts=4 "shiftwidth 4 tabstop 4 softtabstop 0
+set cindent
+set cinoptions=(0,u0,U0
 "set expandtab
 
 
@@ -267,10 +273,14 @@ noremap  <leader>bgd :set background=dark<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>ftc Vatzf
 nnoremap <leader>fto Vatzo
-nnoremap <leader>bb <C-^> 
 nnoremap <leader>ss :set syntax=
 "nnoremap <leader>r : !sv-repo-sync fb-toolchain-api metv-common fb-toolchain amino-rendr<CR>
 nnoremap <leader>r : !gg-repo-sync %:p<CR>
+
+" ------ buffer stuff ------
+nnoremap <leader>bb <C-^> 
+" Close the current buffer and move to the previous one
+nnoremap <leader>bq :bp <BAR> bd #<CR>
 
 " open the file that the cursor is over (assuming its in the tag stack) in a
 " new tab
@@ -325,6 +335,7 @@ noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 
 "autocmd FileType python set expandtab
 "autocmd FileType ruby set expandtab
+autocmd FileType less setlocal commentstring=//\ %s
 
 "call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
@@ -343,6 +354,14 @@ let g:deoplete#sources#syntax#min_keyword_length = 4
 " solarized lightline/powerline color scheme
 let g:lightline = {
       \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename' ], [ 'bufferline' ] ],
+      \ },
+      \ 'component': {
+      \   'bufferline': '%{bufferline#refresh_status()}%{MyBufferline()[0]}'.
+      \                 '%#TabLineSel#%{g:bufferline_status_info.current}'.
+      \                 '%#LightLineLeft_active_3#%{MyBufferline()[2]}'
+      \ },
       \ }
 
 let g:tagbar_usearrows = 1
@@ -354,17 +373,38 @@ let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
 "let g:ctrlsf_auto_close = 0
 let g:ag_working_path_mode="r"
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['jsx'], 'passive_filetypes': [] }
-let g:syntastic_javascript_checkers = ['jsxhint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['js', 'jsx', 'scss'], 'passive_filetypes': [] }
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_scss_checkers = ['stylelint']
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
 "let g:syntastic_jshint_exec='/usr/local/bin/jshint'
 let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml"
 let g:phpqa_codesniffer_args = "--error-severity=1"
 "let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
 "let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+"let g:php_syntax_extensions_enabled = 1
 
 let g:ctrlp_working_path_mode = 'ra'
 
-let JSHintUpdateWriteOnly=1
+"let JSHintUpdateWriteOnly=1
 
 " ---- EasyMotion default config ----
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -372,10 +412,11 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 nmap s <Plug>(easymotion-overwin-f)
+map <Leader>s <Plug>(easymotion-overwin-f)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -383,6 +424,41 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+" --------- Buffergator config ---------
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'R'
+let g:buffergator_suppress_keymaps = 1
+
+" Go to the previous buffer open
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+" Go to the next buffer open
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+" View the entire list of buffers open
+nmap <leader>bl :BuffergatorOpen<cr>
+
+" --------- Bufferline config ---------
+let g:bufferline_active_buffer_left = ''
+let g:bufferline_active_buffer_right = ''
+
+function! MyBufferline()
+  call bufferline#refresh_status()
+  let b = g:bufferline_status_info.before
+  let c = g:bufferline_status_info.current
+  let a = g:bufferline_status_info.after
+  let alen = strlen(a)
+  let blen = strlen(b)
+  let clen = strlen(c)
+  let w = winwidth(0) * 4 / 9
+  if w < alen+blen+clen
+    let whalf = (w - strlen(c)) / 2
+    let aa = alen > whalf && blen > whalf ? a[:whalf] : alen + blen < w - clen || alen < whalf ? a : a[:(w - clen - blen)]
+    let bb = alen > whalf && blen > whalf ? b[-(whalf):] : alen + blen < w - clen || blen < whalf ? b : b[-(w - clen - alen):]
+    return [(strlen(bb) < strlen(b) ? '...' : '') . bb, c, aa . (strlen(aa) < strlen(a) ? '...' : '')]
+  else
+    return [b, c, a]
+  endif
+endfunction
 
 
 source ~/.vim/php-doc.vim 
