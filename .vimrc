@@ -31,7 +31,7 @@ Plug 'scrooloose/nerdtree'
 "Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 " cross-language syntax checkers
-Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 " dash wrapper
 Plug 'rizzatti/dash.vim'
 " Auto completion. Replaces YouCompleteMe
@@ -42,7 +42,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 " PHP
 "Plug 'StanAngeloff/php.vim' " better php syntax
 Plug 'shawncplus/phpcomplete.vim' " PHP omni-completion
-Plug 'joonty/vim-phpqa' " phpmd / phpcs validation
 
 " fuzzy code completion
 "Plug 'Valloric/YouCompleteMe'
@@ -220,7 +219,7 @@ set ruler
 set showcmd
 
 " solarized
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=0
 set background=dark
 colorscheme solarized
 
@@ -322,8 +321,6 @@ nnoremap <leader>a :Ags
 "noremap <leader>dl <Esc>:Dash<CR>
 noremap <leader>dg <Esc>:Dash!<CR>
 
-noremap <leader>se <Esc>:Errors<CR>
-
 " Comment generation
 noremap <leader>cg <Esc>:call PhpDocSingle()<CR>
 
@@ -374,28 +371,30 @@ let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
 let g:ag_working_path_mode="r"
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['js', 'jsx', 'scss'], 'passive_filetypes': [] }
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_scss_checkers = ['stylelint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+let g:neomake_php_phpcs_args_standard = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpcs/Showvine/ruleset.xml'
+let g:neomake_php_phpmd_maker = {
+    \ 'args': ['%:p', 'text', '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'],
+    \ 'errorformat': '%E%f:%l%\s%m',
+    \ }
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+let g:neomake_php_enabled_makers = ['phpcs', 'phpmd']
+let g:neomake_javascript_enabled_makers = ['eslint']
 
-"let g:syntastic_jshint_exec='/usr/local/bin/jshint'
+let g:neomake_error_sign = {'text': '❌', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
+"let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+"let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+"let g:neomake_verbose = 3
+"let g:neomake_logfile = '/Users/evan/neomake.log'
+autocmd! BufWritePost * Neomake
+autocmd! BufReadPost * Neomake
+
+noremap <leader>eo <Esc>:lopen<CR>
+noremap <leader>ec <Esc>:lclose<CR>
+
 let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml"
 let g:phpqa_codesniffer_args = "--error-severity=1"
 "let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
