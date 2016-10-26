@@ -374,14 +374,21 @@ set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" --------- neomake base configuration ---------
+autocmd! BufWritePost * Neomake
+autocmd! BufReadPost * Neomake
 let g:neomake_php_phpcs_args_standard = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpcs/Showvine/ruleset.xml'
 let g:neomake_php_phpmd_maker = {
     \ 'args': ['%:p', 'text', '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'],
     \ 'errorformat': '%E%f:%l%\s%m',
     \ }
-
-let g:neomake_php_enabled_makers = ['phpcs', 'phpmd']
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_scss_stylelint_maker = {
+    \ 'exe': 'stylelint',
+    \ 'errorformat': 
+        \ '%+P%f,' . 
+            \ '%*\s%l:%c  %t  %m,' .
+        \ '%-Q'
+    \ }
 
 let g:neomake_error_sign = {'text': '❌', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
@@ -389,8 +396,11 @@ let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
 "let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 "let g:neomake_verbose = 3
 "let g:neomake_logfile = '/Users/evan/neomake.log'
-autocmd! BufWritePost * Neomake
-autocmd! BufReadPost * Neomake
+
+" --------- neomake enabled makers ---------
+let g:neomake_php_enabled_makers = ['phpcs', 'phpmd']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_scss_enabled_makers = ['stylelint']
 
 noremap <leader>eo <Esc>:lopen<CR>
 noremap <leader>ec <Esc>:lclose<CR>
