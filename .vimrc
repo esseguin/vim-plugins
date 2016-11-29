@@ -118,6 +118,9 @@ set history=1000
 " get rid of windows formatting
 set fileformat=unix
 
+" recursive path
+set path+=**
+
 "set shell=bash\ -i
 
 " stop error noises and prompts
@@ -302,6 +305,7 @@ nnoremap <leader>l :TagbarToggle<CR>
 " Ctrl-P
 noremap <leader>o <Esc>:CtrlP<CR>
 noremap <leader>O <Esc>:CtrlPMRU<CR>
+noremap <leader><leader>o <Esc>:CtrlP %:p:h<CR>
 
 " Ctrl-P Funky (fuzzy search)
 nnoremap <Leader>f :CtrlPFunky<Cr>
