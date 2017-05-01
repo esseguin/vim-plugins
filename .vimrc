@@ -1,3 +1,7 @@
+" -------------------------Neovim config-------------------------
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " -------------------------Vim-plug config-------------------------
 call plug#begin('~/.vim/plugged')
 function! DoRemote(arg)
@@ -7,6 +11,7 @@ endfunction
 " ~~~~~~~~~~~~~~~~~~~~~~~ github plugins ~~~~~~~~~~~~~~~~~~~~~~~
 " git commands
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " automatic closing of quotes, parenthesis, brackets, etc.
 "Plug 'Raimondi/delimitMate'
 " automatic closing of html tags
@@ -30,6 +35,11 @@ Plug 'scrooloose/nerdtree'
 " ack alternative 2 (faster)
 "Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
+
+" fuzzy find
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " cross-language syntax checkers
 Plug 'neomake/neomake'
 " dash wrapper
@@ -52,13 +62,18 @@ Plug 'pangloss/vim-javascript'
 " JSX Syntax
 Plug 'mxw/vim-jsx'
 
+" auto ctags -- this was super slow
+"Plug 'xolox/vim-misc' "ctag updater requirement
+"Plug 'xolox/vim-easytags' "ctag updater
+
 " HTML5 Syntax
 Plug 'othree/html5.vim'
 " % matching for html tags
 Plug 'tmhedberg/matchit'
 
-" Less syntax
+" CSS syntax
 Plug 'groenewege/vim-less'
+Plug 'cakebaker/scss-syntax.vim'
 
 " Markdown syntax
 Plug 'tpope/vim-markdown'
@@ -136,10 +151,10 @@ nnoremap  <leader>y  "+y
 nnoremap  <leader>yy  "+yy
 
 " " Paste from system clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
+"vnoremap <leader>p "+p
+"vnoremap <leader>P "+P
 
 "---------- Tab completion stuff ------------------ 
 "imap <leader><tab> <C-x><C-o>  
@@ -242,6 +257,8 @@ set cinoptions=(0,u0,U0
 " press F2 or F3 to cycle through tabs
 nnoremap <silent> <F2> :tabp<CR>
 nnoremap <silent> <F3> :tabn<CR>
+nnoremap <left> :tabp<CR>
+nnoremap <right> :tabn<CR>
 
 " press F4 to switch between c/cpp files and their headers
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
@@ -289,7 +306,7 @@ nnoremap <leader>bq :bp <BAR> bd #<CR>
 noremap <leader>g <Esc> <C-w><C-]><C-w>T
 
 " run a php command
-noremap <leader>p :s/\"/\\\"/ge<CR>
+noremap <leader>e :s/\"/\\\"/ge<CR>
   \ gv:s/\$/\\$/ge<CR>
   \ gv"aygv:s/\\"/"/ge<CR>
   \ gv:s/\\\$/\$/ge<CR>
@@ -303,9 +320,10 @@ noremap <leader>t :Tabularize /
 nnoremap <leader>l :TagbarToggle<CR>
 
 " Ctrl-P
-noremap <leader>o <Esc>:CtrlP<CR>
-noremap <leader>O <Esc>:CtrlPMRU<CR>
-noremap <leader><leader>o <Esc>:CtrlP %:p:h<CR>
+"noremap <leader>p <Esc>:CtrlP<CR>
+"noremap <leader>P <Esc>:CtrlPMRU<CR>
+"noremap <leader><leader>p <Esc>:CtrlP %:p:h<CR>
+"noremap <leader><leader>c <Esc>:CtrlPClearCache<CR>
 
 " Ctrl-P Funky (fuzzy search)
 nnoremap <Leader>f :CtrlPFunky<Cr>
@@ -343,6 +361,10 @@ autocmd FileType less setlocal commentstring=//\ %s
 
 "let g:ycm_collect_identifiers_from_tags_files = 1
 
+let g:ags_enable_async = 1
+autocmd FileType agsv nnoremap <buffer> ot
+  \ :exec 'tab split ' . ags#filePath(line('.'))<CR>
+
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use deoplete
@@ -350,7 +372,7 @@ let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:deoplete#sources#syntax#min_keyword_length = 4 
+let g:deoplete#sources#syntax#min_keyword_length = 2 
 
 " solarized lightline/powerline color scheme
 let g:lightline = {
@@ -370,6 +392,13 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|vendor)$'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_matchtype = 'path'
 
+" ---------- FZF stuff ---------------
+let g:fzf_command_prefix = 'Fzf'
+noremap <leader>p <Esc>:FzfFiles<CR>
+nmap <C-p> :FzfFiles<CR>
+nmap <C-t> :FzfTags<CR>
+nmap <C-l> :FzfBLines<CR>
+
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$']
 "let g:ctrlsf_auto_close = 0
 let g:ag_working_path_mode="r"
@@ -381,9 +410,9 @@ set statusline+=%*
 " --------- neomake base configuration ---------
 autocmd! BufWritePost * Neomake
 autocmd! BufReadPost * Neomake
-let g:neomake_php_phpcs_args_standard = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpcs/Showvine/ruleset.xml'
+let g:neomake_php_phpcs_args_standard = '/Users/evan/code/smashgg/metv-common/ops/php-linting/phpcs/Showvine/ruleset.xml'
 let g:neomake_php_phpmd_maker = {
-    \ 'args': ['%:p', 'text', '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'],
+    \ 'args': ['%:p', 'text', '/Users/evan/code/smashgg/metv-common/ops/php-linting/phpmd/ruleset.xml'],
     \ 'errorformat': '%E%f:%l%\s%m',
     \ }
 let g:neomake_scss_stylelint_maker = {
@@ -407,12 +436,13 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['stylelint']
 
 noremap <leader>eo <Esc>:lopen<CR>
+noremap <leader>en <Esc>:lnext<CR>
 noremap <leader>ec <Esc>:lclose<CR>
 
-let g:phpqa_messdetector_ruleset = "/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml"
+let g:phpqa_messdetector_ruleset = "/Users/evan/code/smashgg/metv-common/ops/php-linting/phpmd/ruleset.xml"
 let g:phpqa_codesniffer_args = "--error-severity=1"
 "let g:phpqa_messdetector_cmd="phpmd --exclude */test.php"
-"let g:syntastic_php_phpmd_post_args = '/Users/evan/code/showvine/metv-common/ops/php-linting/phpmd/ruleset.xml'
+"let g:syntastic_php_phpmd_post_args = '/Users/evan/code/smashgg/metv-common/ops/php-linting/phpmd/ruleset.xml'
 "let g:php_syntax_extensions_enabled = 1
 
 let g:ctrlp_working_path_mode = 'ra'
@@ -476,4 +506,4 @@ endfunction
 
 source ~/.vim/php-doc.vim 
 
-set tags=~/.vim/mytags/fb-toolchain-api-tags
+"set tags=~/.vim/mytags/fb-toolchain-api-tags

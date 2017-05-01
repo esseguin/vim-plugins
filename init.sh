@@ -1,15 +1,15 @@
 #!/bin/bash
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+nvim +PluginInstall +qall
 
 #cd bundle/YouCompleteMe
 #./install.sh
 #cd ../..
 
-cd bundle/command-t/ruby/command-t/
-ruby extconf.rb
-make
-cd ../../../..
+#cd bundle/command-t/ruby/command-t/
+#ruby extconf.rb
+#make
+#cd ../../../..
 
 ln -s bundle/vim-instant-markdown/after after
 
