@@ -72,12 +72,16 @@ Plug 'othree/html5.vim'
 Plug 'tmhedberg/matchit'
 
 " CSS syntax
-Plug 'groenewege/vim-less'
+"Plug 'groenewege/vim-less'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 
 " Markdown syntax
 Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown'
+
+" Jenkinsfile syntax
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Vim powerlines UI support
 Plug 'itchyny/lightline.vim'
@@ -126,6 +130,8 @@ map ; :
 
 " save on focus lost
 "au FocusLost * :wa
+" enable mouse stuff
+set mouse=a
 
 " store a long history
 set history=1000
@@ -200,6 +206,9 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
+
+" Only syntax highlight the first 200 characters of a line (for performance)
+set synmaxcol=200
 
 set ic
 set number
@@ -423,7 +432,7 @@ let g:neomake_scss_stylelint_maker = {
         \ '%-Q'
     \ }
 
-let g:neomake_error_sign = {'text': '❌', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_error_sign = {'text': '☠️', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
 "let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 "let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
@@ -434,6 +443,9 @@ let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_php_enabled_makers = ['phpcs', 'phpmd']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['stylelint']
+
+" --------- vim-javascript stuff ---------
+let g:javascript_plugin_flow = 1
 
 noremap <leader>eo <Esc>:lopen<CR>
 noremap <leader>en <Esc>:lnext<CR>
