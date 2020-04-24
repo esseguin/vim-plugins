@@ -7,6 +7,7 @@ endfunction
 " Display
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'chrisbra/Colorizer' " handle ansi escape sequences
 
 " git commands
 Plug 'tpope/vim-fugitive'
@@ -23,6 +24,8 @@ Plug 'fs111/pydoc.vim'
 Plug 'scrooloose/nerdtree'
 " search
 Plug 'gabesoft/vim-ags'
+" async command execution
+Plug 'skywind3000/asyncrun.vim'
 
 " fuzzy find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

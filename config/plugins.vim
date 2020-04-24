@@ -116,6 +116,13 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
 let g:UltiSnipsExpandTrigger="<c-tab>"
 
+" ---------- Colorizer --------
+autocmd BufWinEnter quickfix ColorHighlight
+let g:colorizer_disable_bufleave = 1
+
+" ---------- AsyncRun --------
+:autocmd BufWritePost *.php :AsyncRun gg-repo-sync
+
 " ####################################################
 " Old stuff not used anymore
 " ####################################################

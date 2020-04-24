@@ -35,7 +35,6 @@ nnoremap <right> :bn<CR>
 
 nnoremap <leader>ss :set syntax=
 
-nnoremap <leader>r : !gg-repo-sync<CR>
 
 " run a php command
 noremap <leader>e :s/\"/\\\"/ge<CR>
@@ -62,6 +61,11 @@ nmap <C-p> :FzfFiles<CR>
 nmap <C-t> :FzfTags<CR>
 nmap <C-l> :FzfBLines<CR>
 
+" ----------- Asyncrun ----------
+nnoremap <silent> <leader>rr :AsyncRun gg-repo-sync<cr>
+nnoremap <silent> <leader>rs :call asyncrun#quickfix_toggle(8)<cr>
+nnoremap <leader>rt :AsyncRun gg-test run --fail-fast 
+"
 " ----------- Tabularize ----------
 noremap <leader>t :Tabularize /
 
