@@ -43,9 +43,9 @@ noremap <leader>e :s/\"/\\\"/ge<CR>
   \ gv:s/\\\$/\$/ge<CR>
   \ : ! php -r "<C-r>a"<CR>
 
-noremap <leader>eo <Esc>:lopen<CR>
-noremap <leader>en <Esc>:lnext<CR>
-noremap <leader>ec <Esc>:lclose<CR>
+"noremap <leader>eo <Esc>:lopen<CR>
+"noremap <leader>en <Esc>:lnext<CR>
+"noremap <leader>ec <Esc>:lclose<CR>
 noremap <leader>cd :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 
 " ----------------------------------------------------------

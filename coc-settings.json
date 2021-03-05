@@ -1,4 +1,91 @@
 {
-	"intelephense.licenceKey": "008WHIH6228FXR9",
-	"diagnostic.level": "information"
+  "intelephense.licenceKey": "008WHIH6228FXR9",
+  "diagnostic.level": "information",
+  "languageserver": {
+    "dls": {
+      "command": "diagnostic-languageserver",
+      "args": ["--stdio"],
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "linters": {
+          "phpcs": {
+            "command": "./lib/vendor/bin/phpcs",
+            "debounce": 100,
+            "rootPatterns": ["composer.json", "composer.lock", ".git"],
+            "args": ["--standard=Showvine", "--report=emacs", "-s", "-"],
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "phpcs",
+            "formatLines": 1,
+            "formatPattern": [
+              "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)$",
+              {
+                "line": 1,
+                "column": 2,
+                "message": 4,
+                "security": 3
+              }
+            ],
+            "securities": {
+              "error": "error",
+              "warning": "warning"
+            }
+          },
+          "phpmd": {
+            "command": "./lib/vendor/bin/phpmd",
+            "debounce": 100,
+            "rootPatterns": ["composer.json", "composer.lock", ".git"],
+            "args": [
+              "%file",
+              "text",
+              "/Users/evan/code/smashgg/gg-api/php-linting/phpmd/ruleset.xml"
+            ],
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "phpmd",
+            "formatLines": 1,
+            "formatPattern": [
+              "^.*:(\\d+)\\t+(.*)$",
+              {
+                "line": 1,
+                "message": 2
+              }
+            ]
+          },
+          "psalm": {
+            "command": "./lib/vendor/bin/psalm",
+            "debounce": 100,
+            "rootPatterns": [
+              "composer.json",
+              "composer.lock",
+              "vendor",
+              ".git"
+            ],
+            "args": ["--output-format=emacs", "--no-progress"],
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "psalm",
+            "formatLines": 1,
+            "formatPattern": [
+              "^[^:]+:(\\d):(\\d):(.*)\\s-\\s(.*)(\\r|\\n)*$",
+              {
+                "line": 1,
+                "column": 2,
+                "message": 4,
+                "security": 3
+              }
+            ],
+            "securities": {
+              "error": "error",
+              "warning": "warning"
+            },
+            "requiredFiles": ["psalm.xml"]
+          }
+        },
+        "filetypes": {
+          "php": ["phpcs", "phpmd", "psalm"]
+        }
+      }
+    }
+  }
 }

@@ -35,12 +35,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'neomake/neomake'
 " dash wrapper
 Plug 'rizzatti/dash.vim'
-" Auto completion. Replaces YouCompleteMe
+" Language server for a bunch of languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" Allow mixed space/tab tabs
-"Plug 'vim-scripts/Smart-Tabs'
+" Custom linter integrations into coc
+Plug 'iamcco/diagnostic-languageserver', { 'do': 'yarn install' }
 
 " PHP
 "Plug 'StanAngeloff/php.vim' " better php syntax
@@ -54,6 +52,7 @@ Plug 'pangloss/vim-javascript'
 " JSX Syntax
 Plug 'mxw/vim-jsx'
 Plug 'jparise/vim-graphql'
+Plug 'sheerun/vim-polyglot'
 
 " auto ctags -- this was super slow
 "Plug 'xolox/vim-misc' "ctag updater requirement
@@ -94,6 +93,9 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " buffer visualization
 Plug 'jeetsukumaran/vim-buffergator'
+
+" LaTeX support
+"Plug 'lervag/vimtex'
 
 
 " ~~~~~~~~~~~~~~~~~~~~~~~ non-github ~~~~~~~~~~~~~~~~~~~~~~~

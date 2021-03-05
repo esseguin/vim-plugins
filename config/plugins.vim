@@ -47,8 +47,13 @@ let NERDTreeWinSize=50
 " --------- neomake ---------
 autocmd! BufWritePost * Neomake
 autocmd! BufReadPost * Neomake
-let g:neomake_php_phpcs_args_standard = '/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'
+"let g:neomake_php_phpcs_args_standard = '/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'
+let g:neomake_php_phpcs_maker = {
+    \ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpcs',
+    \ 'args': ['--standard=/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'],
+    \ }
 let g:neomake_php_phpmd_maker = {
+    \ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpmd',
     \ 'args': ['%:p', 'text', '/Users/evan/code/smashgg/gg-api/php-linting/phpmd/ruleset.xml'],
     \ 'errorformat': '%E%f:%l%\s%m',
     \ }
@@ -67,7 +72,7 @@ let g:neomake_warning_sign = {'text': '⚠️', 'texthl': 'NeomakeWarningSign'}
 "let g:neomake_verbose = 3
 "let g:neomake_logfile = '/Users/evan/neomake.log'
 "
-let g:neomake_php_enabled_makers = ['phpcs', 'phpmd']
+let g:neomake_php_enabled_makers = []
 "let g:neomake_javascript_enabled_makers = ['eslint'] -- using coc-eslint now
 let g:neomake_javascript_enabled_makers = []
 let g:neomake_scss_enabled_makers = ['stylelint']
