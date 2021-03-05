@@ -70,7 +70,6 @@ Plug 'cakebaker/scss-syntax.vim'
 
 " Markdown syntax
 Plug 'tpope/vim-markdown'
-"Plug 'suan/vim-instant-markdown'
 
 " Jenkinsfile syntax
 Plug 'martinda/Jenkinsfile-vim-syntax'
