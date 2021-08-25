@@ -11,6 +11,7 @@ Plug 'chrisbra/Colorizer' " handle ansi escape sequences
 
 " git commands
 Plug 'tpope/vim-fugitive'
+Plug 'cedarbaum/fugitive-azure-devops.vim'
 Plug 'tpope/vim-rhubarb'
 " automatic closing of quotes, parenthesis, brackets, etc.
 "Plug 'Raimondi/delimitMate'
@@ -26,6 +27,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'gabesoft/vim-ags'
 " async command execution
 Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.extra'
+Plug 'preservim/vimux'
 
 " fuzzy find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -50,7 +53,7 @@ Plug 'SirVer/ultisnips' " required for pdv
 " JS Syntax
 Plug 'pangloss/vim-javascript'
 " JSX Syntax
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 Plug 'sheerun/vim-polyglot'
 

@@ -10,6 +10,14 @@ autocmd FileType less setlocal commentstring=//\ %s
 " ---------- coc ---------------
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! -nargs=0 Eslint :CocCommand eslint.executeAutofix
+let g:coc_global_extensions = [
+	\'coc-json',
+	\'coc-prettier',
+	\'coc-eslint',
+	\'coc-vimlsp',
+	\'coc-tsserver',
+	\'coc-phpls',
+	\]
 
 " lightline/powerline color scheme
 "let g:lightline = {
@@ -48,15 +56,15 @@ let NERDTreeWinSize=50
 autocmd! BufWritePost * Neomake
 autocmd! BufReadPost * Neomake
 "let g:neomake_php_phpcs_args_standard = '/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'
-let g:neomake_php_phpcs_maker = {
-    \ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpcs',
-    \ 'args': ['--standard=/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'],
-    \ }
-let g:neomake_php_phpmd_maker = {
-    \ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpmd',
-    \ 'args': ['%:p', 'text', '/Users/evan/code/smashgg/gg-api/php-linting/phpmd/ruleset.xml'],
-    \ 'errorformat': '%E%f:%l%\s%m',
-    \ }
+"let g:neomake_php_phpcs_maker = {
+    "\ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpcs',
+    "\ 'args': ['--standard=/Users/evan/code/smashgg/gg-api/php-linting/phpcs/Showvine/ruleset.xml'],
+    "\ }
+"let g:neomake_php_phpmd_maker = {
+    "\ 'exe': '/Users/evan/code/smashgg/gg-api/lib/vendor/bin/phpmd',
+    "\ 'args': ['%:p', 'text', '/Users/evan/code/smashgg/gg-api/php-linting/phpmd/ruleset.xml'],
+    "\ 'errorformat': '%E%f:%l%\s%m',
+    "\ }
 let g:neomake_scss_stylelint_maker = {
     \ 'exe': 'stylelint',
     \ 'errorformat': 
@@ -126,7 +134,16 @@ autocmd BufWinEnter quickfix ColorHighlight
 let g:colorizer_disable_bufleave = 1
 
 " ---------- AsyncRun --------
-:autocmd BufWritePost *.php :AsyncRun gg-repo-sync
+"if (empty($TMUX))
+	:autocmd BufWritePost *.php :AsyncRun gg-repo-sync
+"else
+	":autocmd BufWritePost *.php :AsyncRun -mode=term -pos=tmux gg-repo-sync
+"endif
+
+" ---------- Vimux --------
+"let g:VimuxRunnerName = "vimuxout"
+"let g:vimuxrunnertype = "window"
+let g:VimuxOrientation = "h"
 
 " ####################################################
 " Old stuff not used anymore

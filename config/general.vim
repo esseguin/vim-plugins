@@ -129,6 +129,25 @@ if (empty($TMUX))
   endif
 endif
 
+let g:python3_host_prog = "/usr/bin/python3"
+let g:python2_host_prog = "/usr/bin/python2"
+
+if ($WSL_DISTRO_NAME)
+	set clipboard+=unnamedplus
+	let g:clipboard = {
+          		\   'name': 'win32yank-wsl',
+          		\   'copy': {
+          		\      '+': 'win32yank.exe -i --crlf',
+          		\      '*': 'win32yank.exe -i --crlf',
+          		\    },
+          		\   'paste': {
+          		\      '+': 'win32yank.exe -o --lf',
+          		\      '*': 'win32yank.exe -o --lf',
+          		\   },
+          		\   'cache_enabled': 0,
+          		\ }
+endif
+
 " ##################################################################
 " Below this comes from coc.vim default config
 " ##################################################################

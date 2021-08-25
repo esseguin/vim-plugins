@@ -38,7 +38,7 @@
             "args": [
               "%file",
               "text",
-              "/Users/evan/code/smashgg/gg-api/php-linting/phpmd/ruleset.xml"
+              "./php-linting/phpmd/ruleset.xml"
             ],
             "offsetLine": 0,
             "offsetColumn": 0,
