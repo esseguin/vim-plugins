@@ -7,4 +7,4 @@ nvim +PluginInstall +qall
 
 npm i -g yarn neovim diagnostic-languageserver
 
-# must install silversearcher-ag separately
+# must install silversearcher-ag and fd-find separately

@@ -47,6 +47,8 @@ let g:ctrlp_funky_matchtype = 'path'
 
 " ---------- FZF ---------------
 let g:fzf_command_prefix = 'Fzf'
+let $FZF_DEFAULT_COMMAND="fd --type f"
+"let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 " ---------- NERDTree ---------------
 let NERDTreeIgnore = ['\.sw[a-z]$','\.un\~$', '_[A-Z][A-Z]\.json$']
