@@ -8,3 +8,8 @@ nvim +PluginInstall +qall
 npm i -g yarn neovim diagnostic-languageserver
 
 # must install silversearcher-ag and fd-find separately
+    # brew install fd
+    # brew install python
+    # pip3 install pynvim
+# Use :CheckHealth if there are python issues
+

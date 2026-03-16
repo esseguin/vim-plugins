@@ -1,31 +1,12 @@
 " ----------------------------------------------------------
 " ------------------- Vanilla / Custom ---------------------
 " ----------------------------------------------------------
-" " Copy to system clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
 
 " " Paste from system clipboard
 "nnoremap <leader>p "+p
 "nnoremap <leader>P "+P
 "vnoremap <leader>p "+p
 "vnoremap <leader>P "+P
-
-" getting rid of arrow keys
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
-
-nnoremap <Space> *N
 
 " press F2 or F3 to cycle through buffers
 nnoremap <silent> <F2> :bp<CR>

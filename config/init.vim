@@ -28,7 +28,9 @@ Plug 'gabesoft/vim-ags'
 " async command execution
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asyncrun.extra'
-Plug 'preservim/vimux'
+if executable('tmux')
+    Plug 'preservim/vimux'
+endif
 
 " fuzzy find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
