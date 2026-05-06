@@ -75,7 +75,7 @@ set hlsearch
 set incsearch " ...dynamically as they are typed.)
 set showmatch
 
-" make tabs do what they should
-set noet ci pi sts=0 sw=4 ts=4 "shiftwidth 4 tabstop 4 softtabstop 0
+" 2-space expandtab as the global default; per-language overrides in user/options.lua
+set expandtab shiftwidth=2 tabstop=2 softtabstop=2
 set cindent
 set cinoptions=(0,u0,U0
