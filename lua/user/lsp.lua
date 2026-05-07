@@ -69,11 +69,18 @@ vim.lsp.config('gopls', {
 -- that's expected, just open Godot and re-open the file.
 vim.lsp.config('gdscript', {
   cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
-  filetypes = { 'gd', 'gdscript', 'gdscript3' },
+  filetypes = { 'gdscript' },
   root_markers = { 'project.godot' },
 })
 
-vim.filetype.add({ extension = { gd = 'gdscript' } })
+-- Register gotmpl so nvim-lspconfig's default gopls filetypes list resolves
+-- without a checkhealth warning (.gd is already detected natively).
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+    tmpl = 'gotmpl',
+  },
+})
 
 vim.lsp.enable({ 'vtsls', 'eslint', 'jsonls', 'lua_ls', 'gopls', 'gdscript' })
 
@@ -125,19 +132,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Buffer-local LSP keymaps.
+    -- Defaults handled by Neovim 0.11+ (don't re-bind):
+    --   K (hover), grn (rename), gra (code_action), grr (references),
+    --   gri (implementation), grt (type_definition), gO (document_symbols),
+    --   <C-s> in insert mode (signature_help)
+    -- Defaults handled by vim.diagnostic in 0.11+:
+    --   ]d / [d (next / prev diagnostic)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', 'K',  vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<leader>rn',  vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'x' }, '<leader>ca',  vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<leader>cac', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<leader>qf', function()
+    vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format({ async = false }) end, opts)
+    vim.keymap.set('n', '<leader>cq', function()
       vim.lsp.buf.code_action({ apply = true, context = { only = { 'quickfix' } } })
-    end, opts)
-    vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
-      vim.lsp.buf.format({ async = false })
     end, opts)
   end,
 })

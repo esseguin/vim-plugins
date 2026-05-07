@@ -16,6 +16,7 @@ require('user.plugins.oil')
 require('user.plugins.lualine')
 require('user.plugins.flash')
 require('user.plugins.zen-mode')
+require('user.plugins.which-key')
 
 require('user.completion')
 require('user.lsp')

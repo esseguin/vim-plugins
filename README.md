@@ -1,6 +1,5 @@
 # Neovim config
 
-Personal Neovim config for TypeScript / Lua / Go / GDScript work.
 Built on **Neovim 0.12** using built-in `vim.pack` (plugin manager) and
 native `vim.lsp` + `vim.lsp.completion` (no coc, no nvim-cmp).
 
@@ -32,7 +31,8 @@ extension, so don't convert them to Lua.
 │       ├── oil.lua              file explorer
 │       ├── lualine.lua          statusline
 │       ├── flash.lua            motion
-│       └── zen-mode.lua         distraction-free mode
+│       ├── zen-mode.lua         distraction-free mode
+│       └── which-key.lua        prefix-key popup (cheat sheet for muscle memory)
 ├── ftplugin/
 │   ├── python.vim               expandtab override
 │   └── ruby.vim                 expandtab override
@@ -57,6 +57,8 @@ extension, so don't convert them to Lua.
 
 Leader = `,`
 
+> Tip: press a prefix (`<leader>`, `g`, `]`, `[`) and pause — **which-key** pops up a live cheat sheet of what's available. Faster than this README once you're back in flow.
+
 ## Always-on (Neovim AND VSCode-Vim)
 | Key                     | Action                                  |
 |-------------------------|-----------------------------------------|
@@ -68,33 +70,34 @@ Leader = `,`
 | `'` / `` ` ``           | swapped (`'` jumps to line+col)         |
 
 ## Buffers / windows
-| Key                | Action                              |
-|--------------------|-------------------------------------|
-| `<F2>` / `<left>`  | previous buffer                     |
-| `<F3>` / `<right>` | next buffer                         |
-| `<leader>cd`       | open terminal in current file's dir |
+| Key               | Action                              |
+|-------------------|-------------------------------------|
+| `]b` / `[b`       | next / previous buffer              |
+| `<C-^>`           | toggle to alternate (last) buffer   |
+| `<C-o>` / `<C-i>` | jumplist back / forward             |
+| `<leader>cd`      | open terminal in current file's dir |
 
 ## LSP (any buffer with an attached server)
-| Key            | Action                          |
-|----------------|---------------------------------|
-| `gd`           | go to definition                |
-| `gy`           | go to type definition           |
-| `gi`           | go to implementation            |
-| `gr`           | references                      |
-| `K`            | hover docs                      |
-| `<leader>rn`   | rename                          |
-| `<leader>ca`   | code action (visual or current) |
-| `<leader>cac`  | code action on current line     |
-| `<leader>qf`   | quick-fix code action           |
-| `<leader>f`    | format buffer / selection       |
+Most LSP keys are Neovim 0.11 **defaults** — listed here so you remember they exist.
+| Key              | Action                    | Source        |
+|------------------|---------------------------|---------------|
+| `gd`             | go to definition          | this config   |
+| `K`              | hover docs                | nvim default  |
+| `grn`            | rename                    | nvim default  |
+| `gra`            | code action               | nvim default  |
+| `grr`            | references                | nvim default  |
+| `gri`            | implementation            | nvim default  |
+| `grt`            | type definition           | nvim default  |
+| `gO`             | document symbols          | nvim default  |
+| `<C-s>` (insert) | signature help            | nvim default  |
+| `<leader>cf`     | format buffer / selection | this config   |
+| `<leader>cq`     | quick-fix code action     | this config   |
 
 ## Diagnostics
-| Key            | Action                          |
-|----------------|---------------------------------|
-| `[g` / `]g`    | prev / next diagnostic          |
-| `<leader>eo`   | diagnostics → location list     |
-| `<leader>ec`   | close location list             |
-| `<space>a`     | Telescope diagnostics           |
+| Key            | Action                       | Source        |
+|----------------|------------------------------|---------------|
+| `]d` / `[d`    | next / prev diagnostic       | nvim default  |
+| `<leader>fd`   | Telescope diagnostics list   | this config   |
 
 ## Completion (insert mode)
 | Key                 | Action                                   |
@@ -104,33 +107,31 @@ Leader = `,`
 | `<Tab>` / `<S-Tab>` | next / prev item (when popup open)       |
 | `<CR>`              | accept selection (or newline if none)    |
 
-## Telescope (fuzzy)
-| Key                   | Action                          |
-|-----------------------|---------------------------------|
-| `<C-p>` / `<leader>p` | find files in cwd               |
-| `<leader>b`           | buffer picker                   |
-| `<C-t>`               | tags                            |
-| `<C-l>`               | fuzzy lines in current buffer   |
-| `<leader>a`           | live grep                       |
-| `<space>c`            | commands                        |
-| `<space>o`            | LSP document symbols            |
-| `<space>s`            | LSP workspace symbols           |
-| `<space>p`            | resume last picker              |
+## Telescope (`<leader>f...` namespace)
+| Key                    | Action                  |
+|------------------------|-------------------------|
+| `<C-p>` / `<leader>ff` | find files in cwd       |
+| `<leader>fg`           | live grep               |
+| `<leader>fb`           | buffers                 |
+| `<leader>fh`           | help tags               |
+| `<leader>fr`           | resume last picker      |
+| `<leader>fc`           | commands                |
+| `<leader>fd`           | diagnostics             |
+| `<leader>fs`           | LSP workspace symbols   |
+| `<leader>fo`           | LSP document symbols    |
 
 ## File explorer (oil)
 | Key            | Action                                |
 |----------------|---------------------------------------|
-| `<leader>nt`   | open oil (edit dir as buffer)         |
-| `<leader>nf`   | open oil (same)                       |
+| `<leader>e`    | open oil (edit dir as buffer)         |
 | `-`            | (in oil) go up a directory            |
 | `<CR>`         | (in oil) open file/dir                |
 | `:w`           | (in oil) apply pending rename/delete  |
 
 ## Motion (flash)
-| Key            | Action                          |
-|----------------|---------------------------------|
-| `s`            | flash jump                      |
-| `<leader>s`    | flash jump                      |
+| Key  | Action      |
+|------|-------------|
+| `s`  | flash jump  |
 
 ## Commands worth remembering
 | Command                    | Action                              |
