@@ -9,6 +9,7 @@ gh/hosts.yml
 configstore/
 simple-update-notifier/
 iterm2/
+uv/
 
 # Local Claude state
 .claude/
