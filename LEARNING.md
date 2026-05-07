@@ -19,6 +19,8 @@ the learning route to it.
   reading this file and trust the popup once you know a namespace exists.
 - **Vim defaults are still in play.** Modern config doesn't replace vim — it
   adds on top. `dd`, `yy`, `p`, `*`, `gg`, `G`, `/`, `:%s/...` all still work.
+- **`gcc` toggles a line comment, `gc{motion}` over a motion.** Built into
+  Neovim 0.10+, no plugin. Try it now: `gcc` on any line.
 
 ---
 
@@ -97,7 +99,7 @@ The everyday LSP keys. Most are nvim 0.11 defaults, not custom bindings.
 6. `gra` — code actions. Menu of refactors / quick fixes the LSP knows.
 7. `gri` — go to implementation (useful for interface methods).
 8. `gO` — document symbols. Outline of the current file.
-9. `<leader>cf` — format buffer (calls the LSP formatter).
+9. `<leader>cf` — format buffer (conform — see Lesson 11).
 
 **Memorize first:** `gd`, `K`, `grn`. The rest you can look up via
 which-key.
@@ -224,6 +226,76 @@ Stop reading this file. Use the popup.
 
 ---
 
+## Lesson 11 — Surround (10 min)
+
+Add, change, and delete the characters around something. The single
+biggest text-editing upgrade after motion.
+
+**The drill** — paste `let foo = bar` into a buffer:
+1. Cursor on `bar`. `gsaiw"` — wraps the word in quotes: `let foo = "bar"`.
+2. `gsr"'` — replaces `"` with `'`: `let foo = 'bar'`.
+3. `gsd'` — deletes the quotes: `let foo = bar`.
+4. `gsa$)` (cursor at `let`) — wraps to end-of-line in parens.
+5. Visual mode: `viw` then `gsa"` — surround the visual selection.
+
+**Mnemonics:**
+- `gs` = "go surround"
+- `a` = add, `d` = delete, `r` = replace
+- After the verb, vim takes a motion (for add) or a target char (for delete/replace)
+
+**Goal:** stop manually moving cursor + typing closing chars. `gsaiw)`
+to wrap a word in parens is *much* faster than `i(<Esc>ea)<Esc>`.
+
+---
+
+## Lesson 12 — Treesitter text objects (10 min)
+
+Operators (`d`, `y`, `c`, `v`) + treesitter-aware objects = whole-thing
+edits.
+
+**The drill** — in a TypeScript file with at least one function and class:
+1. Cursor anywhere inside a function. `vaf` — visually selects the
+   *whole* function (signature + body + braces).
+2. `<Esc>`, then `vif` — selects only the function *body*.
+3. `daf` — deletes the function entirely. Undo with `u`.
+4. Cursor anywhere on a parameter in a function call. `via` — selects
+   that parameter. `dia` deletes it.
+5. `]f` — jump to next function start. `[f` — previous. Try walking
+   the file this way.
+6. `caf` — change the function (delete + drop into insert mode).
+
+**Goal:** when refactoring, stop visually selecting line-by-line. Pick
+the syntactic unit and let treesitter find its edges.
+
+---
+
+## Lesson 13 — Format on save + trouble panels (10 min)
+
+**Format on save (conform):**
+1. One-time setup: `:MasonInstall prettier stylua goimports`.
+2. Make a sloppy edit in a `.ts` file (extra spaces, missing semis).
+3. `:w` — file should be reformatted. The save and the format are
+   one action.
+4. Manual format any time: `<leader>cf`. (It calls conform, falls back
+   to the LSP if no formatter is configured for the filetype.)
+5. To skip a single save without formatting: `:noautocmd w`.
+
+**Trouble panels:**
+Telescope (`<leader>fd`) is great for *fuzzy-finding* one diagnostic.
+Trouble is better for *working through a list* of them.
+1. Open a file with multiple diagnostics. `<leader>xx` — opens the
+   workspace diagnostics panel.
+2. `j`/`k` to move; `<CR>` jumps to the location.
+3. `<leader>xX` — same, but only the current buffer.
+4. `<leader>xs` — symbols outline (like `gO` but persistent).
+5. `<leader>xl` — references / definitions / implementations panel.
+6. Inside trouble: `q` closes; `?` shows the full keymap.
+
+**Goal:** trouble for "I have a backlog of issues to walk through."
+Telescope for "I want to jump to the one issue I remember."
+
+---
+
 ## What NOT to learn yet
 
 Vim has *enormous* depth. You don't need any of this to be productive
@@ -248,6 +320,9 @@ These are the deep cuts. Stick to the lessons above first.
 - **Day 4:** Lessons 6, 7 (completion + oil)
 - **Day 5:** Lesson 8 (git workflow)
 - **Day 6:** Lessons 9, 10 (flash + which-key)
+- **Day 7:** Lesson 11 (surround — high-value compound key)
+- **Day 8:** Lesson 12 (text objects — once 11 is muscle memory)
+- **Day 9:** Lesson 13 (format-on-save + trouble; mostly verification)
 - **Week 2+:** stop using this file. Open `README.md` only when stuck.
 
 ---
