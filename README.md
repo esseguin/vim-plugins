@@ -3,6 +3,9 @@
 Built on **Neovim 0.12** using built-in `vim.pack` (plugin manager) and
 native `vim.lsp` + `vim.lsp.completion` (no coc, no nvim-cmp).
 
+> Coming back after time away? Work through [LEARNING.md](./LEARNING.md) once,
+> then keep this file open as a reference.
+
 The `config/common/*.vim` files are also sourced by the **VSCode-Vim**
 extension, so don't convert them to Lua.
 
