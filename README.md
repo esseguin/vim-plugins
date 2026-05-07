@@ -32,7 +32,8 @@ extension, so don't convert them to Lua.
 │       ├── lualine.lua          statusline
 │       ├── flash.lua            motion
 │       ├── zen-mode.lua         distraction-free mode
-│       └── which-key.lua        prefix-key popup (cheat sheet for muscle memory)
+│       ├── which-key.lua        prefix-key popup (cheat sheet for muscle memory)
+│       └── gitsigns.lua         in-buffer git markers + hunk ops
 ├── ftplugin/
 │   ├── python.vim               expandtab override
 │   └── ruby.vim                 expandtab override
@@ -132,6 +133,20 @@ Most LSP keys are Neovim 0.11 **defaults** — listed here so you remember they 
 | Key  | Action      |
 |------|-------------|
 | `s`  | flash jump  |
+
+## Git (`<leader>g...` namespace)
+| Key            | Action                                  | Provided by |
+|----------------|-----------------------------------------|-------------|
+| `<leader>gg`   | open lazygit (interactive TUI)          | lazygit     |
+| `<leader>gb`   | blame current file                      | fugitive    |
+| `<leader>gB`   | blame current line (full, with hover)   | gitsigns    |
+| `<leader>gh`   | stage hunk                              | gitsigns    |
+| `<leader>gr`   | reset hunk                              | gitsigns    |
+| `<leader>gp`   | preview hunk                            | gitsigns    |
+| `<leader>gd`   | diff this file                          | gitsigns    |
+| `]h` / `[h`    | next / prev hunk                        | gitsigns    |
+| `:Git ...`     | any other fugitive command              | fugitive    |
+| `:GBrowse`     | open file on GitHub                     | rhubarb     |
 
 ## Commands worth remembering
 | Command                    | Action                              |

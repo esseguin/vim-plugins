@@ -37,6 +37,7 @@ vim.pack.add({
   -- Git
   { src = 'https://github.com/tpope/vim-fugitive' },
   { src = 'https://github.com/tpope/vim-rhubarb' },
+  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
 })
 
 -- vim.pack has no per-plugin build hook, so handle telescope-fzf-native's

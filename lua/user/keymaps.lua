@@ -35,6 +35,19 @@ map('n', '<leader>fo', '<cmd>Telescope lsp_document_symbols<CR>')
 -- File explorer
 map('n', '<leader>e', '<cmd>Oil<CR>')
 
+-- Git: lazygit (interactive TUI) + fugitive's blame as a one-key shortcut.
+-- Per-hunk operations live in gitsigns.lua's on_attach.
+map('n', '<leader>gg', function()
+  vim.cmd.tabnew()
+  vim.cmd.terminal('lazygit')
+  vim.cmd.startinsert()
+  vim.api.nvim_create_autocmd('TermClose', {
+    buffer = 0, once = true,
+    callback = function() vim.cmd.tabclose() end,
+  })
+end, { desc = 'lazygit' })
+map('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = 'blame (fugitive)' })
+
 -- Flash motion (overrides vim's `s`-substitute, kept on purpose)
 map({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end)
 
