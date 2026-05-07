@@ -117,19 +117,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    -- Go: gofmt convention — organize imports + format on save.
-    if client.name == 'gopls' then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.code_action({
-            apply = true,
-            context = { only = { 'source.organizeImports' }, diagnostics = {} },
-          })
-          vim.lsp.buf.format({ async = false })
-        end,
-      })
-    end
+    -- Format-on-save handled globally by conform.nvim; gopls's
+    -- source.organizeImports is run by goimports inside conform.
 
     -- Buffer-local LSP keymaps.
     -- Defaults handled by Neovim 0.11+ (don't re-bind):
@@ -139,7 +128,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Defaults handled by vim.diagnostic in 0.11+:
     --   ]d / [d (next / prev diagnostic)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format({ async = false }) end, opts)
     vim.keymap.set('n', '<leader>cq', function()
       vim.lsp.buf.code_action({ apply = true, context = { only = { 'quickfix' } } })
     end, opts)

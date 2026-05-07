@@ -16,6 +16,7 @@ vim.pack.add({
 
   -- Treesitter (main branch = modern API used in treesitter.lua)
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
 
   -- Telescope + deps
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
@@ -33,6 +34,11 @@ vim.pack.add({
   { src = 'https://github.com/folke/flash.nvim' },
   { src = 'https://github.com/folke/zen-mode.nvim' },
   { src = 'https://github.com/folke/which-key.nvim' },
+  { src = 'https://github.com/folke/trouble.nvim' },
+  { src = 'https://github.com/echasnovski/mini.surround' },
+
+  -- Formatter dispatcher (runs prettier/stylua/goimports etc, falls back to LSP)
+  { src = 'https://github.com/stevearc/conform.nvim' },
 
   -- Git
   { src = 'https://github.com/tpope/vim-fugitive' },

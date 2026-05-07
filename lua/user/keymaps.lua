@@ -35,6 +35,9 @@ map('n', '<leader>fo', '<cmd>Telescope lsp_document_symbols<CR>')
 -- File explorer
 map('n', '<leader>e', '<cmd>Oil<CR>')
 
+-- Code: format buffer (conform; falls back to LSP if no formatter configured)
+map('n', '<leader>cf', function() require('conform').format({ lsp_format = 'fallback' }) end, { desc = 'format' })
+
 -- Git: lazygit (interactive TUI) + fugitive's blame as a one-key shortcut.
 -- Per-hunk operations live in gitsigns.lua's on_attach.
 map('n', '<leader>gg', function()

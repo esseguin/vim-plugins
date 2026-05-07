@@ -16,4 +16,6 @@ require('which-key').add({
   { '<leader>c', group = 'code' },
   { '<leader>f', group = 'find' },
   { '<leader>g', group = 'git' },
+  { '<leader>x', group = 'lists / trouble' },
+  { 'gs',         group = 'surround' },
 })
