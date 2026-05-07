@@ -30,6 +30,9 @@ vim.pack.add({
   { src = 'https://github.com/nvim-lualine/lualine.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 
+  -- Unified split/pane nav with wezterm (see plugins/smart-splits.lua)
+  { src = 'https://github.com/mrjones2014/smart-splits.nvim' },
+
   -- Motion + UX
   { src = 'https://github.com/folke/flash.nvim' },
   { src = 'https://github.com/folke/zen-mode.nvim' },

@@ -33,6 +33,7 @@ extension, so don't convert them to Lua.
 │       ├── telescope.lua        fuzzy finder
 │       ├── oil.lua              file explorer
 │       ├── lualine.lua          statusline
+│       ├── smart-splits.lua     unified split/pane nav with wezterm
 │       ├── flash.lua            motion
 │       ├── zen-mode.lua         distraction-free mode
 │       ├── which-key.lua        prefix-key popup (cheat sheet for muscle memory)
@@ -84,6 +85,17 @@ Leader = `,`
 | `<C-^>`           | toggle to alternate (last) buffer   |
 | `<C-o>` / `<C-i>` | jumplist back / forward             |
 | `<leader>cd`      | open terminal in current file's dir |
+
+## Splits / panes (smart-splits, works across nvim + wezterm)
+Same keys move between nvim splits AND wezterm panes — when the cursor
+hits the edge of an nvim split it jumps to the next wezterm pane.
+| Key                  | Action                          |
+|----------------------|---------------------------------|
+| `<C-h/j/k/l>`        | navigate split/pane in dir      |
+| `<A-h/j/k/l>`        | resize split/pane               |
+| `CMD+d`              | wezterm: split horizontal       |
+| `CMD+SHIFT+d`        | wezterm: split vertical         |
+| `CMD+w`              | wezterm: close pane (confirm)   |
 
 ## LSP (any buffer with an attached server)
 Most LSP keys are Neovim 0.11 **defaults** — listed here so you remember they exist.
