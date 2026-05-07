@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.4",
+  "workspace.library": [
+    "/Users/evan/.local/share/wezterm-types"
+  ],
+  "workspace.checkThirdParty": false,
+  "diagnostics.globals": []
+}
