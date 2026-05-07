@@ -27,9 +27,6 @@ set novisualbell
 " Start scrolling 3 lines before the bottom/top
 set scrolloff=3
 
-" get rid of vi compatibility
-set nocompatible
-
 " backups even after saving and exiting
 set undofile
 set nobackup
@@ -44,13 +41,10 @@ set backspace=indent,eol,start
 
 set encoding=UTF-8
 
-set ic
 set number
-"relative numbering.
 set relativenumber
-setglobal relativenumber
 
-" something about buffers
+" allow switching buffers without saving the current one
 set hidden
 
 " makes ' more useful by making it go to the line AND column
