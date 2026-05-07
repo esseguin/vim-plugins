@@ -1,0 +1,15 @@
+# OS / editor noise
+.DS_Store
+*.swp
+
+# Auth tokens & secrets
+gh/hosts.yml
+
+# Runtime / cache / state — folders we deliberately don't track
+configstore/
+simple-update-notifier/
+iterm2/
+
+# Local Claude state
+.claude/
+**/.claude/settings.local.json
