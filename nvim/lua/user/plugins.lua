@@ -43,6 +43,9 @@ vim.pack.add({
   -- Formatter dispatcher (runs prettier/stylua/goimports etc, falls back to LSP)
   { src = 'https://github.com/stevearc/conform.nvim' },
 
+  -- In-buffer markdown rendering (headings, code blocks, lists, tables, etc.)
+  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
+
   -- Git
   { src = 'https://github.com/tpope/vim-fugitive' },
   { src = 'https://github.com/tpope/vim-rhubarb' },

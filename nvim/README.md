@@ -69,155 +69,171 @@ Leader = `,`
 > Tip: press a prefix (`<leader>`, `g`, `]`, `[`) and pause — **which-key** pops up a live cheat sheet of what's available. Faster than this README once you're back in flow.
 
 ## Always-on (Neovim AND VSCode-Vim)
-| Key                     | Action                                  |
-|-------------------------|-----------------------------------------|
-| `;`                     | `:` (command mode)                      |
-| `jj`                    | Esc (insert mode)                       |
-| `<leader>y` / `Y` / `yy`| yank to system clipboard                |
-| `j` / `k`               | move by visual line (gj/gk)             |
-| `<Space>`               | search backward for word under cursor   |
-| `'` / `` ` ``           | swapped (`'` jumps to line+col)         |
+
+| Key                      | Action                                |
+| ------------------------ | ------------------------------------- |
+| `;`                      | `:` (command mode)                    |
+| `jj`                     | Esc (insert mode)                     |
+| `<leader>y` / `Y` / `yy` | yank to system clipboard              |
+| `j` / `k`                | move by visual line (gj/gk)           |
+| `<Space>`                | search backward for word under cursor |
+| `'` / `` ` ``            | swapped (`'` jumps to line+col)       |
 
 ## Buffers / windows
+
 | Key               | Action                              |
-|-------------------|-------------------------------------|
+| ----------------- | ----------------------------------- |
 | `]b` / `[b`       | next / previous buffer              |
-| `<C-^>`           | toggle to alternate (last) buffer   |
+| `<BS>` (`<C-^>`)  | toggle to alternate (last) buffer   |
 | `<C-o>` / `<C-i>` | jumplist back / forward             |
 | `<leader>cd`      | open terminal in current file's dir |
 
 ## Splits / panes (smart-splits, works across nvim + wezterm)
+
 Same keys move between nvim splits AND wezterm panes — when the cursor
 hits the edge of an nvim split it jumps to the next wezterm pane.
-| Key                  | Action                          |
+| Key | Action |
 |----------------------|---------------------------------|
-| `<C-h/j/k/l>`        | navigate split/pane in dir      |
-| `<A-h/j/k/l>`        | resize split/pane               |
-| `CMD+d`              | wezterm: split horizontal       |
-| `CMD+SHIFT+d`        | wezterm: split vertical         |
-| `CMD+w`              | wezterm: close pane (confirm)   |
+| `<C-h/j/k/l>` | navigate split/pane in dir |
+| `<A-h/j/k/l>` | resize split/pane |
+| `CMD+d` | wezterm: split horizontal |
+| `CMD+SHIFT+d` | wezterm: split vertical |
+| `CMD+w` | wezterm: close pane (confirm) |
 
 ## LSP (any buffer with an attached server)
+
 Most LSP keys are Neovim 0.11 **defaults** — listed here so you remember they exist.
-| Key              | Action                    | Source        |
+| Key | Action | Source |
 |------------------|---------------------------|---------------|
-| `gd`             | go to definition          | this config   |
-| `K`              | hover docs                | nvim default  |
-| `grn`            | rename                    | nvim default  |
-| `gra`            | code action               | nvim default  |
-| `grr`            | references                | nvim default  |
-| `gri`            | implementation            | nvim default  |
-| `grt`            | type definition           | nvim default  |
-| `gO`             | document symbols          | nvim default  |
-| `<C-s>` (insert) | signature help            | nvim default  |
-| `<leader>cf`     | format buffer / selection | this config   |
-| `<leader>cq`     | quick-fix code action     | this config   |
+| `gd` | go to definition | this config |
+| `K` | hover docs | nvim default |
+| `grn` | rename | nvim default |
+| `gra` | code action | nvim default |
+| `grr` | references | nvim default |
+| `gri` | implementation | nvim default |
+| `grt` | type definition | nvim default |
+| `gO` | document symbols | nvim default |
+| `<C-s>` (insert) | signature help | nvim default |
+| `<leader>cf` | format buffer / selection | this config |
+| `<leader>cq` | quick-fix code action | this config |
 
 ## Diagnostics
-| Key            | Action                       | Source        |
-|----------------|------------------------------|---------------|
-| `]d` / `[d`    | next / prev diagnostic       | nvim default  |
-| `<leader>fd`   | Telescope diagnostics list   | this config   |
+
+| Key          | Action                     | Source       |
+| ------------ | -------------------------- | ------------ |
+| `]d` / `[d`  | next / prev diagnostic     | nvim default |
+| `<leader>fd` | Telescope diagnostics list | this config  |
 
 ## Completion (insert mode)
-| Key                 | Action                                   |
-|---------------------|------------------------------------------|
-| (auto)              | popup auto-triggers as you type          |
-| `<C-Space>`         | manually trigger / refresh               |
-| `<Tab>` / `<S-Tab>` | next / prev item (when popup open)       |
-| `<CR>`              | accept selection (or newline if none)    |
+
+| Key                 | Action                                |
+| ------------------- | ------------------------------------- |
+| (auto)              | popup auto-triggers as you type       |
+| `<C-Space>`         | manually trigger / refresh            |
+| `<Tab>` / `<S-Tab>` | next / prev item (when popup open)    |
+| `<CR>`              | accept selection (or newline if none) |
 
 ## Telescope (`<leader>f...` namespace)
-| Key                    | Action                  |
-|------------------------|-------------------------|
-| `<C-p>` / `<leader>ff` | find files in cwd       |
-| `<leader>fg`           | live grep               |
-| `<leader>fb`           | buffers                 |
-| `<leader>fh`           | help tags               |
-| `<leader>fr`           | resume last picker      |
-| `<leader>fc`           | commands                |
-| `<leader>fd`           | diagnostics             |
-| `<leader>fs`           | LSP workspace symbols   |
-| `<leader>fo`           | LSP document symbols    |
+
+| Key                    | Action                |
+| ---------------------- | --------------------- |
+| `<C-p>` / `<leader>ff` | find files in cwd     |
+| `<leader>fg`           | live grep             |
+| `<leader>fb`           | buffers               |
+| `<leader>fh`           | help tags             |
+| `<leader>fr`           | resume last picker    |
+| `<leader>fc`           | commands              |
+| `<leader>fd`           | diagnostics           |
+| `<leader>fs`           | LSP workspace symbols |
+| `<leader>fo`           | LSP document symbols  |
 
 ## File explorer (oil)
-| Key            | Action                                |
-|----------------|---------------------------------------|
-| `<leader>e`    | open oil (edit dir as buffer)         |
-| `-`            | (in oil) go up a directory            |
-| `<CR>`         | (in oil) open file/dir                |
-| `:w`           | (in oil) apply pending rename/delete  |
+
+| Key         | Action                               |
+| ----------- | ------------------------------------ |
+| `<leader>e` | open oil (edit dir as buffer)        |
+| `-`         | (in oil) go up a directory           |
+| `<CR>`      | (in oil) open file/dir               |
+| `:w`        | (in oil) apply pending rename/delete |
 
 ## Motion (flash)
-| Key  | Action      |
-|------|-------------|
-| `s`  | flash jump  |
+
+| Key | Action     |
+| --- | ---------- |
+| `s` | flash jump |
 
 ## Text objects (treesitter-aware)
+
 Combine with `d` / `y` / `c` / `v`. e.g. `daf` deletes a function, `vic` selects inside class.
-| Key       | Object                       |
+| Key | Object |
 |-----------|------------------------------|
-| `af` / `if` | around / inside function   |
-| `ac` / `ic` | around / inside class      |
-| `aa` / `ia` | around / inside parameter  |
+| `af` / `if` | around / inside function |
+| `ac` / `ic` | around / inside class |
+| `aa` / `ia` | around / inside parameter |
 | `]f` / `[f` | next / prev function start |
-| `]F` / `[F` | next / prev function end   |
+| `]F` / `[F` | next / prev function end |
 
 ## Surround (`gs` prefix)
-| Key                       | Action                                    | Example |
-|---------------------------|-------------------------------------------|---------|
-| `gsa{motion}{char}`       | add surround                              | `gsaiw"` → `"foo"` |
-| `gsr{old}{new}`           | replace surround                          | `gsr"'`  → `'foo'` |
-| `gsd{char}`               | delete surround                           | `gsd"`   → `foo`   |
-| `gsf{char}` / `gsF{char}` | find surround right / left                |         |
-| `gsh{motion}`             | highlight surround                        |         |
+
+| Key                       | Action                     | Example            |
+| ------------------------- | -------------------------- | ------------------ |
+| `gsa{motion}{char}`       | add surround               | `gsaiw"` → `"foo"` |
+| `gsr{old}{new}`           | replace surround           | `gsr"'` → `'foo'`  |
+| `gsd{char}`               | delete surround            | `gsd"` → `foo`     |
+| `gsf{char}` / `gsF{char}` | find surround right / left |                    |
+| `gsh{motion}`             | highlight surround         |                    |
 
 ## Comments (Neovim 0.10+ built-in, no plugin)
-| Key       | Action                          |
-|-----------|---------------------------------|
-| `gcc`     | toggle comment on current line  |
-| `gc{motion}` | toggle comment over motion   |
-| `gc` (visual) | toggle comment on selection |
+
+| Key           | Action                         |
+| ------------- | ------------------------------ |
+| `gcc`         | toggle comment on current line |
+| `gc{motion}`  | toggle comment over motion     |
+| `gc` (visual) | toggle comment on selection    |
 
 ## Diagnostics / lists (`<leader>x...` namespace, trouble.nvim)
-| Key            | Action                          |
-|----------------|---------------------------------|
-| `<leader>xx`   | workspace diagnostics panel     |
-| `<leader>xX`   | buffer-only diagnostics panel   |
-| `<leader>xs`   | symbols panel                   |
-| `<leader>xl`   | LSP refs/def/impl panel         |
-| `<leader>xL`   | location list                   |
-| `<leader>xQ`   | quickfix list                   |
+
+| Key          | Action                        |
+| ------------ | ----------------------------- |
+| `<leader>xx` | workspace diagnostics panel   |
+| `<leader>xX` | buffer-only diagnostics panel |
+| `<leader>xs` | symbols panel                 |
+| `<leader>xl` | LSP refs/def/impl panel       |
+| `<leader>xL` | location list                 |
+| `<leader>xQ` | quickfix list                 |
 
 ## Git (`<leader>g...` namespace)
-| Key            | Action                                  | Provided by |
-|----------------|-----------------------------------------|-------------|
-| `<leader>gg`   | open lazygit (interactive TUI)          | lazygit     |
-| `<leader>gb`   | blame current file                      | fugitive    |
-| `<leader>gB`   | blame current line (full, with hover)   | gitsigns    |
-| `<leader>gh`   | stage hunk                              | gitsigns    |
-| `<leader>gr`   | reset hunk                              | gitsigns    |
-| `<leader>gp`   | preview hunk                            | gitsigns    |
-| `<leader>gd`   | diff this file                          | gitsigns    |
-| `]h` / `[h`    | next / prev hunk                        | gitsigns    |
-| `:Git ...`     | any other fugitive command              | fugitive    |
-| `:GBrowse`     | open file on GitHub                     | rhubarb     |
+
+| Key          | Action                                | Provided by |
+| ------------ | ------------------------------------- | ----------- |
+| `<leader>gg` | open lazygit (interactive TUI)        | lazygit     |
+| `<leader>gb` | blame current file                    | fugitive    |
+| `<leader>gB` | blame current line (full, with hover) | gitsigns    |
+| `<leader>gh` | stage hunk                            | gitsigns    |
+| `<leader>gr` | reset hunk                            | gitsigns    |
+| `<leader>gp` | preview hunk                          | gitsigns    |
+| `<leader>gd` | diff this file                        | gitsigns    |
+| `]h` / `[h`  | next / prev hunk                      | gitsigns    |
+| `:Git ...`   | any other fugitive command            | fugitive    |
+| `:GBrowse`   | open file on GitHub                   | rhubarb     |
 
 ## Commands worth remembering
-| Command                    | Action                              |
-|----------------------------|-------------------------------------|
-| `:Goyo`                    | toggle zen mode                     |
-| `:Format`                  | LSP format                          |
-| `:OR`                      | organize imports (TS / Go)          |
-| `:Mason`                   | install / manage LSPs               |
-| `:checkhealth`             | diagnose any setup issues           |
-| `:lua =vim.pack.get()`     | list installed plugins              |
-| `:Git ...`                 | fugitive (status, blame, log, etc.) |
-| `:GBrowse`                 | rhubarb — open file on GitHub       |
-| `:InspectTree`             | show treesitter tree for buffer     |
-| `:LspInfo` / `:LspLog`     | LSP status / log                    |
+
+| Command                | Action                              |
+| ---------------------- | ----------------------------------- |
+| `:Goyo`                | toggle zen mode                     |
+| `:Format`              | LSP format                          |
+| `:OR`                  | organize imports (TS / Go)          |
+| `:Mason`               | install / manage LSPs               |
+| `:checkhealth`         | diagnose any setup issues           |
+| `:lua =vim.pack.get()` | list installed plugins              |
+| `:Git ...`             | fugitive (status, blame, log, etc.) |
+| `:GBrowse`             | rhubarb — open file on GitHub       |
+| `:InspectTree`         | show treesitter tree for buffer     |
+| `:LspInfo` / `:LspLog` | LSP status / log                    |
 
 ## Indentation defaults
+
 - Global: 2-space, `expandtab`
 - Go / GDScript: tabs (idiomatic)
 - Python / Ruby: `expandtab` (per ftplugin)
@@ -228,35 +244,36 @@ Combine with `d` / `y` / `c` / `v`. e.g. `daf` deletes a function, `vic` selects
 Things I've decided to skip for now but might want later. Listed so I don't have
 to re-research what the modern community uses.
 
-| Plugin                | What it does                                              | When I'd add it |
-|-----------------------|-----------------------------------------------------------|-----------------|
-| `nvim-autopairs`      | auto-close `({[` and quotes                               | if manual closing gets annoying |
-| `bufferline.nvim`     | VSCode-style buffer tabs at top of window                 | if I lose track of open buffers |
-| `indent-blankline`    | vertical indent guide lines                               | for deeply nested code |
-| `nvim-colorizer.lua`  | inline color swatches for `#abc123` etc.                  | doing CSS / theming work |
-| `harpoon.nvim`        | pin 4 files for instant 1-key jump                        | jumping between same 3-4 files all day |
-| `nvim-lint`           | linter dispatcher (ruff, stylelint, etc.)                 | linters not covered by an LSP |
-| `mason-tool-installer`| declarative install for non-LSP tools (prettier, etc.)    | if `:MasonInstall` becomes tedious |
-| `toggleterm.nvim`     | floating / split terminals on a hotkey                    | if the lazygit-tab pattern gets old |
-| `markdown-preview.nvim` | live markdown preview in browser                        | writing long docs |
-| `nvim-notify`         | pretty toast notifications                                | mostly cosmetic |
-| `dressing.nvim`       | nicer floating UI for `vim.ui.input` / `select`           | mostly cosmetic |
-| `mini.ai`             | extended a/i text objects (any bracket, func calls, etc.) | if treesitter-textobjects feels limiting |
-| `mini.move`           | move lines / selections with alt+hjkl                     | personal taste |
-| `neogit`              | magit-style git TUI inside nvim                           | if lazygit doesn't stick |
-| `diffview.nvim`       | side-by-side diff browser, integrates with neogit         | reviewing big PRs locally |
-| `auto-session`        | restore window layout per directory                       | switching between many projects |
+| Plugin                  | What it does                                              | When I'd add it                          |
+| ----------------------- | --------------------------------------------------------- | ---------------------------------------- |
+| `nvim-autopairs`        | auto-close `({[` and quotes                               | if manual closing gets annoying          |
+| `bufferline.nvim`       | VSCode-style buffer tabs at top of window                 | if I lose track of open buffers          |
+| `indent-blankline`      | vertical indent guide lines                               | for deeply nested code                   |
+| `nvim-colorizer.lua`    | inline color swatches for `#abc123` etc.                  | doing CSS / theming work                 |
+| `harpoon.nvim`          | pin 4 files for instant 1-key jump                        | jumping between same 3-4 files all day   |
+| `nvim-lint`             | linter dispatcher (ruff, stylelint, etc.)                 | linters not covered by an LSP            |
+| `mason-tool-installer`  | declarative install for non-LSP tools (prettier, etc.)    | if `:MasonInstall` becomes tedious       |
+| `toggleterm.nvim`       | floating / split terminals on a hotkey                    | if the lazygit-tab pattern gets old      |
+| `markdown-preview.nvim` | live markdown preview in browser                          | writing long docs                        |
+| `nvim-notify`           | pretty toast notifications                                | mostly cosmetic                          |
+| `dressing.nvim`         | nicer floating UI for `vim.ui.input` / `select`           | mostly cosmetic                          |
+| `mini.ai`               | extended a/i text objects (any bracket, func calls, etc.) | if treesitter-textobjects feels limiting |
+| `mini.move`             | move lines / selections with alt+hjkl                     | personal taste                           |
+| `neogit`                | magit-style git TUI inside nvim                           | if lazygit doesn't stick                 |
+| `diffview.nvim`         | side-by-side diff browser, integrates with neogit         | reviewing big PRs locally                |
+| `auto-session`          | restore window layout per directory                       | switching between many projects          |
 
 Skipping intentionally: **noice.nvim** (pretty cmdline but masks errors),
 **snacks.nvim / mini.nvim full bundle** (too much in one go — cherry-pick instead),
 **leap.nvim** (alternative to flash, no need), **dashboard plugins** (cosmetic).
 
 ## When something is off
-| Symptom                                  | Where to look                                   |
-|------------------------------------------|-------------------------------------------------|
-| no completion popup                      | `:LspInfo` — server attached?                   |
-| GDScript LSP says ECONNREFUSED           | open Godot first; LSP is on TCP 6005            |
-| TS file looks like plain text            | treesitter parser missing — `:checkhealth`      |
-| Telescope-fzf-native missing             | `cd ~/.local/share/nvim/site/pack/.../telescope-fzf-native.nvim && make` |
-| treesitter "no such file: tree-sitter"   | `brew install tree-sitter-cli` (NOT `tree-sitter` — that's just the lib), then relaunch |
-| weird key behavior                       | `:verbose imap <key>` to see who mapped it      |
+
+| Symptom                                | Where to look                                                                           |
+| -------------------------------------- | --------------------------------------------------------------------------------------- |
+| no completion popup                    | `:LspInfo` — server attached?                                                           |
+| GDScript LSP says ECONNREFUSED         | open Godot first; LSP is on TCP 6005                                                    |
+| TS file looks like plain text          | treesitter parser missing — `:checkhealth`                                              |
+| Telescope-fzf-native missing           | `cd ~/.local/share/nvim/site/pack/.../telescope-fzf-native.nvim && make`                |
+| treesitter "no such file: tree-sitter" | `brew install tree-sitter-cli` (NOT `tree-sitter` — that's just the lib), then relaunch |
+| weird key behavior                     | `:verbose imap <key>` to see who mapped it                                              |

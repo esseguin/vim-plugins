@@ -17,6 +17,10 @@ local map = vim.keymap.set
 map('n', ']b', ':bn<CR>', { silent = true })
 map('n', '[b', ':bp<CR>', { silent = true })
 
+-- Toggle to last-used buffer. Default `<C-^>` is Ctrl+Shift+6 — awkward;
+-- normal-mode `<BS>` otherwise just moves left one char (use `h`).
+map('n', '<BS>', '<C-^>', { silent = true, desc = 'last buffer' })
+
 -- Terminal in current file's directory
 map('n', '<leader>cd', ":let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>")
 

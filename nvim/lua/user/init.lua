@@ -23,6 +23,7 @@ require('user.plugins.gitsigns')
 require('user.plugins.surround')
 require('user.plugins.conform')
 require('user.plugins.trouble')
+require('user.plugins.render-markdown')
 
 require('user.completion')
 require('user.lsp')

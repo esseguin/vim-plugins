@@ -46,8 +46,10 @@ This is the biggest mental shift coming back to vim.
 **The drill:**
 1. From inside nvim (any buffer), `:e file_a.ts` — opens a file.
 2. `:e file_b.ts` — opens another. Now you have 2 buffers.
-3. `<C-^>` — toggles between the *last two*. Do this 3-4 times until
-   it's reflex. This is the single most-used buffer key.
+3. `<BS>` (backspace) — toggles between the *last two*. Do this 3-4 times
+   until it's reflex. This is the single most-used buffer key. (Remapped
+   from vim's default `<C-^>`, which is Ctrl+Shift+6 — works too if you
+   prefer it.)
 4. `]b` and `[b` — cycle through all buffers in order.
 5. `<leader>fb` — fuzzy picker. Type a few letters of either filename
    to jump.
@@ -55,7 +57,7 @@ This is the biggest mental shift coming back to vim.
 
 **Goal:** stop thinking "I need to open a file" and start thinking
 "I need to find the buffer I already have, or open a new one." 90% of
-your file-switching should use `<C-^>` and `<leader>fb`.
+your file-switching should use `<BS>` and `<leader>fb`.
 
 ---
 
