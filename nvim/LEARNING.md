@@ -39,7 +39,29 @@ Goal: confirm everything is attached and parsing before you go further.
 
 ---
 
-## Lesson 2 — Buffers (10 min)
+## Lesson 2 — Lean on which-key (5 min)
+
+The discovery tool you'll use to learn everything else. Once you know
+this works, you don't need to memorize bindings from this file — just
+which prefix opens which menu.
+
+**The drill:**
+1. Press `<leader>` and *do nothing*. Wait 300ms.
+2. Popup shows: `c → +code`, `f → +find`, `g → +git`, `x → +trouble`,
+   plus the leaf bindings (`e`, `cd`, `gg`, `gb`).
+3. Press `f` (still no `<Esc>`). Now you see all `<leader>f...` bindings.
+4. `<Esc>` to back out without choosing.
+5. Same trick works after `g` (LSP defaults: `gd`, `gO`, `gra...`,
+   `grn...`, `grr...`) and `]` / `[`.
+6. `:checkhealth which-key` — audits for keymap conflicts.
+
+**Goal:** when stuck, type the prefix and let the popup teach you. The
+namespaces you'll use daily are `<leader>f` (find), `<leader>g` (git),
+`<leader>c` (code), `<leader>x` (trouble).
+
+---
+
+## Lesson 3 — Buffers (10 min)
 
 This is the biggest mental shift coming back to vim.
 
@@ -61,7 +83,7 @@ your file-switching should use `<BS>` and `<leader>fb`.
 
 ---
 
-## Lesson 3 — Finding things (15 min)
+## Lesson 4 — Finding things (15 min)
 
 Telescope replaces every "I need to find X" workflow.
 
@@ -70,7 +92,7 @@ Telescope replaces every "I need to find X" workflow.
    `<CR>` to open. `<C-x>` opens in horizontal split, `<C-v>` vertical.
 2. `<leader>fg` — live grep. Type a pattern; results update as you type.
    `<CR>` jumps to that line.
-3. `<leader>fb` — buffer picker (you saw this in lesson 2).
+3. `<leader>fb` — buffer picker (you saw this in lesson 3).
 4. `<leader>fr` — resume the *last* picker you used. After a grep, you
    close the results, realize you wanted a different match — `<leader>fr`
    brings the picker back exactly where it was.
@@ -86,7 +108,7 @@ project. `<C-p>` is faster.
 
 ---
 
-## Lesson 4 — LSP basics (15 min)
+## Lesson 5 — LSP basics (15 min)
 
 The everyday LSP keys. Most are nvim 0.11 defaults, not custom bindings.
 
@@ -101,16 +123,18 @@ The everyday LSP keys. Most are nvim 0.11 defaults, not custom bindings.
 6. `gra` — code actions. Menu of refactors / quick fixes the LSP knows.
 7. `gri` — go to implementation (useful for interface methods).
 8. `gO` — document symbols. Outline of the current file.
-9. `<leader>cf` — format buffer (conform — see Lesson 11).
+9. `<leader>cf` — format buffer (conform — see Lesson 13).
 
 **Memorize first:** `gd`, `K`, `grn`. The rest you can look up via
 which-key.
 
 ---
 
-## Lesson 5 — Diagnostics (5 min)
+## Lesson 6 — Diagnostics + trouble (10 min)
 
-LSP errors/warnings show up as virtual text + signcolumn markers.
+LSP errors/warnings show up as virtual text + signcolumn markers. You
+have two tools for working with them: telescope for *fuzzy-finding* one,
+trouble for *walking through a list*.
 
 **The drill:**
 1. Introduce a deliberate type error in a `.ts` file. Save.
@@ -121,10 +145,20 @@ LSP errors/warnings show up as virtual text + signcolumn markers.
 4. `<leader>cq` — apply the LSP's quickfix (when one exists).
 5. `<leader>fd` — telescope picker over *all* diagnostics in the workspace.
    Useful before commits to make sure you didn't leave warnings.
+6. `<leader>xx` — trouble's workspace diagnostics panel. Use this when
+   you want to *walk through* a backlog rather than jump to one.
+7. `<leader>xX` — same, but only the current buffer.
+8. `<leader>xs` — symbols outline (like `gO` but persistent in a side panel).
+9. `<leader>xl` — references / definitions / implementations panel.
+10. Inside trouble: `<CR>` jumps to the location; `q` closes; `?` shows
+    the full keymap.
+
+**Goal:** telescope for "jump to the one issue I remember." Trouble for
+"I have a backlog to walk through."
 
 ---
 
-## Lesson 6 — Completion flow (5 min)
+## Lesson 7 — Completion flow (5 min)
 
 Native nvim 0.12 completion. No nvim-cmp.
 
@@ -144,7 +178,7 @@ Native nvim 0.12 completion. No nvim-cmp.
 
 ---
 
-## Lesson 7 — File explorer (oil, 10 min)
+## Lesson 8 — File explorer (oil, 10 min)
 
 Oil is *not* a tree. You edit your filesystem like a buffer.
 
@@ -164,7 +198,7 @@ Oil is *not* a tree. You edit your filesystem like a buffer.
 
 ---
 
-## Lesson 8 — Git daily flow (15 min)
+## Lesson 9 — Git daily flow (15 min)
 
 You have three git tools. They overlap; learn what each is for.
 
@@ -194,7 +228,7 @@ leave nvim for git.
 
 ---
 
-## Lesson 9 — Motion (flash, 5 min)
+## Lesson 10 — Motion (flash, 5 min)
 
 Quick jumps inside the visible screen.
 
@@ -207,24 +241,6 @@ Quick jumps inside the visible screen.
 
 **Goal:** for jumps within a screen, `s` beats `/`-search and `f`/`t`
 because labels disambiguate immediately.
-
----
-
-## Lesson 10 — Lean on which-key (5 min)
-
-Stop reading this file. Use the popup.
-
-**The drill:**
-1. Press `<leader>` and *do nothing*. Wait 300ms.
-2. Popup shows: `c → +code`, `f → +find`, `g → +git`, plus the
-   leaf bindings (`e`, `cd`, `gg`, `gb`).
-3. Press `f` (still no `<Esc>`). Now you see all `<leader>f...` bindings.
-4. `<Esc>` to back out without choosing.
-5. Same trick works after `g` (LSP defaults: `gd`, `gO`, `gra...`,
-   `grn...`, `grr...`) and `]` / `[`.
-6. `:checkhealth which-key` — audits for keymap conflicts.
-
-**Goal:** when stuck, type the prefix and let the popup teach you.
 
 ---
 
@@ -271,30 +287,18 @@ the syntactic unit and let treesitter find its edges.
 
 ---
 
-## Lesson 13 — Format on save + trouble panels (10 min)
+## Lesson 13 — Format on save (5 min)
 
-**Format on save (conform):**
+Formatters run on `:w` via conform.
+
+**The drill:**
 1. One-time setup: `:MasonInstall prettier stylua goimports`.
 2. Make a sloppy edit in a `.ts` file (extra spaces, missing semis).
 3. `:w` — file should be reformatted. The save and the format are
    one action.
-4. Manual format any time: `<leader>cf`. (It calls conform, falls back
+4. Manual format any time: `<leader>cf`. (Calls conform, falls back
    to the LSP if no formatter is configured for the filetype.)
 5. To skip a single save without formatting: `:noautocmd w`.
-
-**Trouble panels:**
-Telescope (`<leader>fd`) is great for *fuzzy-finding* one diagnostic.
-Trouble is better for *working through a list* of them.
-1. Open a file with multiple diagnostics. `<leader>xx` — opens the
-   workspace diagnostics panel.
-2. `j`/`k` to move; `<CR>` jumps to the location.
-3. `<leader>xX` — same, but only the current buffer.
-4. `<leader>xs` — symbols outline (like `gO` but persistent).
-5. `<leader>xl` — references / definitions / implementations panel.
-6. Inside trouble: `q` closes; `?` shows the full keymap.
-
-**Goal:** trouble for "I have a backlog of issues to walk through."
-Telescope for "I want to jump to the one issue I remember."
 
 ---
 
@@ -316,15 +320,15 @@ These are the deep cuts. Stick to the lessons above first.
 
 ## Suggested cadence
 
-- **Day 1:** Lessons 1, 2 (install verified, buffer reflexes)
-- **Day 2:** Lesson 3 (telescope is the biggest daily win)
-- **Day 3:** Lessons 4, 5 (LSP + diagnostics)
-- **Day 4:** Lessons 6, 7 (completion + oil)
-- **Day 5:** Lesson 8 (git workflow)
-- **Day 6:** Lessons 9, 10 (flash + which-key)
+- **Day 1:** Lessons 1, 2, 3 (install + which-key + buffer reflexes)
+- **Day 2:** Lesson 4 (telescope is the biggest daily win)
+- **Day 3:** Lessons 5, 6 (LSP + diagnostics/trouble)
+- **Day 4:** Lessons 7, 8 (completion + oil)
+- **Day 5:** Lesson 9 (git workflow)
+- **Day 6:** Lesson 10 (flash)
 - **Day 7:** Lesson 11 (surround — high-value compound key)
 - **Day 8:** Lesson 12 (text objects — once 11 is muscle memory)
-- **Day 9:** Lesson 13 (format-on-save + trouble; mostly verification)
+- **Day 9:** Lesson 13 (format-on-save; mostly verification)
 - **Week 2+:** stop using this file. Open `README.md` only when stuck.
 
 ---
