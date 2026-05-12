@@ -5,7 +5,7 @@
 
 require('lualine').setup({
   options = {
-    theme = 'onedark',
+    theme = 'vscode',
     icons_enabled = true,
     globalstatus = true,
   },

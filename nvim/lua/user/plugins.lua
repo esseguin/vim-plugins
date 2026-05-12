@@ -6,8 +6,8 @@
 -- That means plugin require()s in later modules just work.
 
 vim.pack.add({
-  -- Colorscheme
-  { src = 'https://github.com/navarasu/onedark.nvim' },
+  -- Colorscheme (VSCode Dark+ port; matches wezterm's Dark+ scheme)
+  { src = 'https://github.com/Mofiqul/vscode.nvim' },
 
   -- LSP installer + server config defaults
   { src = 'https://github.com/mason-org/mason.nvim' },

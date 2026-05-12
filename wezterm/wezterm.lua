@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 ---@type Config
 local config = wezterm.config_builder()
 
-config.color_scheme = "Nord (Gogh)"
+config.color_scheme = "Dark+"
 
 config.keys = {
 	-- splits

@@ -1,7 +1,6 @@
 -- lua/user/plugins/colorscheme.lua
 --
--- Colorscheme setup. Lua port of the original onedark.vim — same look,
--- with proper Treesitter highlight groups.
+-- VSCode Dark+ via Mofiqul/vscode.nvim — matches wezterm's "Dark+" scheme.
 
-require('onedark').setup({ style = 'dark' })
-require('onedark').load()
+require('vscode').setup({ style = 'dark' })
+require('vscode').load()
